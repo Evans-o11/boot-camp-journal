@@ -42,3 +42,232 @@ tomorrow's topic is.
 Tomorrow:
 Tomorrow's topic might be cloud, packets  we haven't been given a scheme/
 syllabus to follow to stay ahead, though it's only the first day. Let's see.
+
+
+
+
+
+
+
+
+
+## Day 2 - August 4, 2026
+
+### Learned:
+
+Today's class covered switches, routers, LAN, WAN, and how devices actually 
+communicate — both within the same network and across the world. After 
+class, I went back, watched extra videos, and wrote out 9 self-generated 
+questions with full answers to really test whether I understood the 
+material, not just memorized it.
+
+**Switches vs Routers:**
+A switch is a device used to interconnect computers within the same local 
+environment so they can communicate with each other. We use copper cable 
+(RJ45) to connect computers to the switch. There are different types/
+categories of these copper cables — CAT-5, CAT-6, etc. Fiber optic cables 
+are for better and faster connections than copper cable — we always use 
+cables to connect computers to a switch. However, a switch cannot use 
+wireless technology. If you want the devices in the same environment to be 
+connected to each other over wireless technology, we can use an "Access 
+Point," which uses wireless with an antenna to communicate with equipment, 
+unlike a switch device which uses cables to communicate with each other.
+
+A switch device is enough for computers in the same LAN to communicate.
+A router has no role in the communication of devices in the same LAN.
+
+If PC1 wants to send a packet to the internet, the flow is:
+PC1 → Switch (cables) → Router (cables) → Internet (ISP cables)
+
+A router is a device we use to connect to another computer in a different 
+network/world. The internet is a structure that connects all the LANs all 
+over the world. A home router is a combo device that is a mixture of router 
+and switch.
+
+**Single Point of Failure:** If we give an entire load to a single point, 
+and that point fails, everything connected to it fails too — that's why 
+network design matters.
+
+**Routing tables:** Each router must have a special table called a routing 
+table. A routing table tells the router what route to send the packet 
+through. The internet is the network of networks. Packet transmission is 
+the basics of connecting to the internet or communicating with a computer 
+on another side of the world.
+
+**LAN (Local Area Network):** It's a group/collection of devices in one 
+physical place such as a school, office, etc. NB: You can't create a LAN 
+between computers located far away from each other. By using a switch 
+device, we can create a Local Area Network.
+
+Packet → Frame. If computer A can send a packet to computer B, this means 
+both computers are on the same network. Flow: Sending device → Switch → 
+Receiving device. The higher the number of ports on a switch, the higher 
+the price. These ports are called LAN ports.
+
+**WAN (Wide Area Network):** It's a network made up of the combination of 
+numerous different LANs. Why do we need a WAN? Because the internet is a 
+public network — it's public, but huge companies that have offices across 
+the world still want to communicate between each computer in each office. 
+Yes, they can use the internet, and without it they can't communicate. But 
+that company has to create another network — a wider one — so different 
+computers across the globe but the same company can communicate as if 
+they're in the same place. That's when WAN comes in. But rather than it 
+being a public network, it's rather a private network — only that company 
+and its computers can have access to it.
+
+**VPN:** A VPN tunnel creates a special network connection over a public 
+network. WAN networks are built using VPN technology. We use a switch 
+device to create a LAN, while we use a router to create a WAN. With the 
+help of WAN, different devices act as if they are in the same environment.
+
+**Internet backbone:** A network setup by global ISPs to be able to 
+communicate with each other.
+
+**ISP hierarchy:** Local ISPs connect neighborhoods, and regional ISPs 
+connect cities in a country. In summary, the first step to connect to the 
+internet is the local ISP, and if you examine your router, you can see a 
+cable coming from your local ISP connected to it. Some local ISPs can 
+connect to the global ISP without having to go through the regional ISP, 
+and this is mostly due to a close infrastructure of the local ISP to the 
+global ISP.
+
+To access a website: the user sends a request message to the server, the 
+server sends a response message back to the user.
+
+**Peering:** It's the technique in which a server establishes an almost 
+direct connection with the user. It's used by giant companies. Global ISPs 
+are responsible for international communication.
+
+---
+
+### My 9 self-quiz questions and answers:
+
+**Q1: What is the difference between a switch and a router?**
+A switch is used to interconnect computers in the same local environment 
+with each other. A router is used to connect one computer to another 
+computer, in a different environment. Illustration: computers connected 
+together with a switch can share data and communicate with each other. BUT 
+while doing all that they want, to have access to the internet, they need 
+a router. Copper cables are used to connect one computer to another via a 
+switch. But for these devices to have access to the internet, they need a 
+router — a router is what connects to the ISP (via fiber optic cable/
+copper cable), which gives the gateway for devices to use the internet.
+
+**Q2: Why can 2 devices connect on the same LAN and communicate through a 
+switch without using the router?**
+These devices can communicate through a switch without using the router 
+because the switch has ports where cables are physically connected from 
+all computers in that area (may be an office, school). All computers 
+connect to that switch, which receives data, processes it, and knows the 
+destination which that specific data "packet" is bound for. If device A 
+wants device B to receive a packet, all devices in the same location are 
+connected. The switch receives the packet, processes it, knows where that 
+packet is bound for, then sends it to device B. Though these 2 devices 
+connected on the same LAN can communicate without a router via a switch, 
+they won't have access to the internet.
+
+**Q3: If my laptop wants to open www.google.com, describe the journey from 
+my laptop until it reaches the google server.**
+My laptop sends a packet/data/request to my home router. (A home router is 
+made up of switch and router). The router receives it and sends it to the 
+internet, which is made up of so many other routers. The packet chooses 
+what path to take — the fastest and most convenient path. Then it sends it 
+to the server where google.com is saved/kept. In return, google.com, after 
+receiving that packet, checks and sees what exactly I requested, processes 
+it, and sends it back through its server, which sends it back to the 
+internet, then back to my own home router, then to my laptop — then I will 
+be able to access that website. Also, if any google server is close, or my 
+ISP to my router has good infrastructure, it won't have to send it to the 
+global ISP — it can send it directly to the google server.
+
+**Q4: If a company has offices in Abuja, Lagos, and London, would they use 
+a LAN or a WAN to connect all the offices?**
+They will use a WAN. Because for them to use a LAN to connect laptops in 
+Abuja to laptops in London, a very long, inconvenient, and expensive 
+process would be needed which won't be possible. So instead, they take the 
+LAN of each office where these laptops are connected, and pass them through 
+the internet, but on a private line which the company creates themselves 
+and is only accessible to the company themselves — and all this is a Wide 
+Area Network. Also remember, a Wide Area Network can't work without the 
+internet.
+
+**Q5: What is a host?**
+A host is a device that can communicate with one another. Example: Phones, 
+Laptops, Desktops.
+
+**Q6: Your home router loses power. What devices in my house will still be 
+able to communicate with each other? Will they still be able to access the 
+internet?**
+If my home router suddenly loses power, the devices that will still be able 
+to communicate with each other are devices that have been set up to 
+communicate using a switch. So when the router goes down, those devices 
+can still communicate with each other but won't have access to the 
+internet, because the router serves as the gateway to the internet — 
+without it, devices can't have access to the internet.
+
+**Q7: A router has a routing table. Why? What will happen if it doesn't 
+have a routing table?**
+A router has a routing table because it tells the data/packets which pass 
+through the router what path to follow, so both endpoints receive these 
+packets faster and more conveniently. Take it like a map — it tells a 
+delivery driver ("the packet") what road to follow so it can get to the 
+owner or receiver of that package faster and easier. Without it, those 
+data/packets are lost and won't get to their destinations.
+
+**Q8: A company wants employees in different countries to work as if they 
+were in the same office. Why might they use a VPN?**
+They might use a VPN to mask and protect data/packets from one endpoint to 
+another. The internet is a public place — any skilled personnel can have 
+access to that data. Since the company wants employees in different 
+countries to work as if they were in the same office, they might use a VPN 
+to encrypt any data both offices send and receive, to make it secure — 
+remember, there's no 100% security on the internet. A VPN makes it harder 
+and keeps this data encrypted so that only the router in each office can 
+decrypt this data before sending it to each employee.
+
+**Q9: Explain the difference between internet, router, switch, LAN, WAN, 
+and IP address — using a football analogy.**
+Imagine we are playing a football match, using a 4-5-1 formation as a 
+scenario. Every position given is permanent — nobody leaves their position, 
+they just stand and wait for instructions.
+
+The internet is like the midfield — for team A to score on team B, they 
+must pass the midfield; if not, they can never score on team B. So the 
+internet is the midfield everyone has to pass through to reach the other 
+side.
+
+Each player can communicate with each other, and even say out their 
+tactics openly, because they're on their own half of the field — take it 
+as LAN. When they finally go to their opponent's half, they are far away 
+but still need to communicate, but in a very private and secure way — still 
+on the huge public field (for all players on both halves) but team A's 
+players need to let other players back on their own half know what's about 
+to happen — pass well, make the run, and all that. They set up a network 
+where they can talk on the public field, but only team A players will 
+understand it. That network is WAN — still public, but only accessible to 
+team A.
+
+---
+
+### Struggled with:
+
+**DNS servers and protocols** were briefly mentioned in class but I still 
+don't fully grasp them. While answering Question 3, I realized I skipped a 
+step — how does my laptop actually know WHICH server holds google.com 
+before sending the request there? That's a gap I still need to fill.
+
+**The 24-port switch problem:** I kept pondering — what if we have 25 
+computers in a room, but the switch we have only has 24 ports? What do we 
+do? I thought maybe we connect that switch to another switch so all 25 
+computers can communicate with each other — but I wasn't sure if that was 
+actually correct, or how it would even work in practice. Need to confirm 
+this tomorrow.
+
+### Tomorrow:
+
+No class tomorrow, so I'm using the day to go deeper into DNS and how it 
+fits into the journey a request takes to reach a website. I also want to 
+confirm my answer about connecting two switches together to solve the 
+port-limit problem, and understand exactly how that works. Also want to 
+refine my football analogy for Question 9 — I think it works well for LAN/
+WAN/Internet, but I want to make sure it's as clear as possible.
