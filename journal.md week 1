@@ -595,3 +595,270 @@ port-limit problem, and understand precisely how and why that works. I
 also want to see if there are other analogies I can build for concepts 
 I'm still shaky on, the same way the football analogy helped make Q9 
 click for me.
+
+
+
+## Day 3 - August 5, 2026 (Self-Study Day, No Class)
+
+### Focus: Understanding DNS deeply, closing the gap I flagged on Day 1 
+### and Day 2
+
+Today there was no class, so I used the full day to properly understand 
+DNS. I watched extra videos, took detailed notes, wrote out 6 
+self-generated questions to test my understanding, and then kept pushing 
+myself with follow-up "but why" questions until every piece of the chain 
+actually made sense — not just memorized.
+
+---
+
+### PART 1: WHAT I LEARNED (Full Notes)
+
+**What is DNS, in simple terms:**
+
+DNS (Domain Name System) is like a translator that translates requests 
+from humans — which come in names — into numerical values called IP 
+addresses, so the computer can understand them.
+
+A domain is any name, or string, that we type into a web browser. It 
+could be google.com, or anything similar.
+
+DNS acts like a phonebook. In this phonebook, we search for a name, and 
+it matches that name to a corresponding number (an IP address).
+
+**Why computers need this translation at all:**
+
+Computers are machines, and just like humans — when you speak to a human 
+in a language he/she doesn't understand, you don't get feedback. 
+Machines/computers' language is numbers. So unless you already know the 
+exact IP address of google.com, the computer can't understand what you 
+want. That's exactly where DNS comes in — it bridges the gap between 
+human language (names) and computer language (numbers).
+
+**The DNS Resolver's cache:**
+
+A DNS resolver cache is a temporary memory that saves data temporarily. 
+Let's say you type www.[something] into your browser for the first time 
+— it goes through your DNS and its protocols, checks its cache, and all 
+that. Since it isn't in its cache the first time, it's able to receive 
+the correct IP address with help from its "friends" — the Root Server and 
+the TLD server. Once it gets the answer, it saves that result. So the 
+next time you (or anyone using that same resolver) tries to access that 
+same webpage, rather than going through all that process again to figure 
+out what IP address is linked to that URL, it simply fetches it 
+immediately from its own cache. If there was no caching at all, every 
+single request — even to a site visited seconds ago — would have to go 
+through the full lookup chain again, making everything noticeably slower.
+
+**The full DNS lookup chain, step by step, in order:**
+
+```
+1. You type google.com into your browser
+
+2. Your DNS Resolver checks its OWN cache first
+   → If it's already cached (visited recently): 
+     returns the IP immediately, journey ends here
+
+3. If NOT cached, the Resolver asks a Root Server
+   → The Root Server's job is to look at the domain's 
+     TLD (the extension — .com, .ng, .org, etc.) and 
+     point the resolver toward the correct TLD server 
+     for that specific extension. The Root Server does 
+     NOT know the final IP address itself — it just 
+     knows which TLD server to send you to.
+
+4. The Resolver then asks the correct TLD Server 
+   (in this case, the .com TLD server, since google.com 
+   ends in .com)
+   → The TLD server holds a directory/record mapping 
+     domain names to their Authoritative servers — but 
+     ONLY for domains under its own extension. The .com 
+     TLD server only knows about .com domains. It does 
+     NOT know anything about .ng, .org, or any other 
+     extension — each extension has its own completely 
+     separate TLD server.
+   → It doesn't know the exact IP either, but it knows 
+     WHICH Authoritative server is responsible for 
+     google.com specifically, and points the resolver 
+     there.
+
+5. The Resolver then asks Google's own Authoritative 
+   DNS Server
+   → This is the server that Google itself owns and 
+     controls directly. It's the actual original source 
+     of truth for google.com's IP address. It replies: 
+     "Here's the real IP address: 142.250.x.x"
+   → IMPORTANT: this Authoritative server is NOT a 
+     shared/universal server. Every single domain on the 
+     internet has its own Authoritative server (or set of 
+     them), owned and managed by whoever owns that 
+     specific domain. Google runs Google's own. A 
+     different company runs their own, completely 
+     separately.
+
+6. The Resolver sends that IP address back to your browser
+
+7. Your browser now connects DIRECTLY to that IP address, 
+   and the website loads
+
+8. The Resolver SAVES this result in its cache, so next 
+   time it's needed, it skips straight to step 2
+```
+
+**Why the resolver can't just skip straight to the Authoritative server:**
+
+I initially wondered — since Root and TLD don't actually know the final 
+IP address, why doesn't the resolver just go straight to Google's 
+Authoritative server? The answer: the resolver genuinely doesn't know 
+WHERE Google's Authoritative server even is, until it's told. It's not 
+choosing to take the long way — each step in the chain is literally how 
+it DISCOVERS where to go next. There's no single master list anywhere 
+containing every domain's exact server address — Root and TLD exist 
+specifically to make that discovery process possible.
+
+I compared it to trying to find someone's exact house in a huge city when 
+you only know their name, not their address — you have to ask a general 
+information desk first (Root), which points you to the right district 
+(TLD), which finally points you to the exact street (Authoritative 
+server).
+
+**Is Google's Authoritative server the only one that knows google.com's 
+IP?**
+
+Yes — Google's Authoritative server is the actual OWNER of that 
+information, because Google itself runs and controls it. Every other 
+resolver in the world (your ISP's resolver, Google's public 8.8.8.8, 
+Cloudflare's 1.1.1.1) only ever learns the answer by asking that same 
+authoritative source, or by having a cached copy of a previous answer 
+from it. If Google ever changed their server's IP, every resolver 
+worldwide would eventually need to re-ask the authoritative server to get 
+the updated answer — this is exactly why cached answers expire after a 
+set time (called a TTL — Time To Live) instead of staying cached forever, 
+so resolvers periodically re-check with the real source in case anything 
+changed.
+
+**Important correction I caught myself, and had confirmed:**
+
+I initially said "the TLD is .com" — but this isn't fully accurate. TLD 
+(Top Level Domain) is actually a CATEGORY, not one single thing. ".com" 
+is just ONE example of a TLD — one member of that category. Other TLDs 
+include .ng, .org, .net, .io, .gov, .edu, .co, and thousands more. Each 
+one has its own completely separate TLD server, holding records only for 
+domains under that specific extension.
+
+**Corrected way to say it:**
+- "TLD" = the general concept/category (Top Level Domain)
+- ".com" = one specific TLD (with its own dedicated server)
+- ".ng" = a different, separate TLD (with its own separate server)
+
+So the accurate phrasing is: **".com is a TLD"** — not "the TLD is .com." 
+The Root Server's real job is to look at WHICH TLD a domain uses, and 
+direct the resolver to that specific TLD server.
+
+---
+
+### PART 2: MY 6 SELF-QUIZ QUESTIONS AND ANSWERS
+
+**Q1: What is DNS, in your own words — what problem does it actually 
+solve?**
+
+DNS is like a middleman between a buyer and a seller. Imagine a buyer and 
+seller live in an environment where the buyer can only talk directly to 
+the middleman, and the middleman relays messages to the seller. If the 
+buyer wants something, the buyer tries to explain in a way the seller 
+doesn't directly understand. But the middleman understands what the buyer 
+wants, and passes that request across to the seller in a language the 
+seller understands. So when we type in a website name like 
+www.netflix.com, we're using our own human "language" — the computer 
+doesn't understand this directly. What we typed has to be translated into 
+what the computer can understand and use — its own language, which is 
+numbers. That computer won't be able to understand what you want without 
+a DNS.
+
+**Q2: Why can't computers just use domain names (like google.com) 
+directly, without needing IP addresses at all?**
+
+Because computers are machines, and just like humans — when you speak to 
+a human in a language he/she doesn't understand, you don't get feedback. 
+Machines/computers' language is numbers. So unless you already know the 
+IP address of google.com, the computer can't understand what you want — 
+but that's where DNS comes in.
+
+**Q3: Walk me through the full DNS lookup chain, in order, when there's 
+no cached answer available.**
+
+```
+DNS Resolver checks cache
+    ↓ (not found)
+Root Server → points to correct TLD server (based on extension)
+    ↓
+TLD Server (.com, .ng, .org, etc.) → points to the correct 
+    Authoritative server for that specific domain
+    ↓
+Authoritative Server → gives the REAL final IP address
+    ↓
+Resolver saves it in cache, sends it back to browser
+    ↓
+Browser connects directly to that IP → website loads
+```
+
+**Q4: What is a DNS resolver's cache, and why does it matter? What would 
+happen if DNS had no caching at all?**
+
+A DNS resolver cache is a temporary memory that saves data temporarily. 
+The first time you visit a website, the resolver has to go through the 
+full chain (Root → TLD → Authoritative) since it isn't in its cache yet. 
+But once it gets the answer, it saves it. Next time you access that same 
+webpage, rather than going through that whole process again, it simply 
+fetches the answer immediately from its own cache. If it has no caching 
+at all, its response is simply slower — every request repeats the full 
+chain, even for sites visited seconds earlier.
+
+**Q5: What is a Root Server, and what's its actual job in the chain — 
+does it know the final IP address itself, or does it do something else?**
+
+Its job in the chain is to say: "Hey bro, this is what you gave me. 
+Inside what you gave me, I only know this much, but I can direct you to 
+where you can get your remaining answer." That's its work. And no, it 
+doesn't know the final IP address — it just points the resolver in the 
+right direction, toward the correct TLD server, based on the domain's 
+extension.
+
+**Q6: What is a TLD, and can you give a few real examples beyond .com?**
+
+TLD stands for Top Level Domain — it's a category, not one single thing. 
+".com" is just one example/type of TLD. Other examples include .ng 
+(Nigeria), .org, .net, .io, and many more — each with its own separate 
+dedicated server.
+
+---
+
+### Struggled with:
+
+At first, the DNS chain felt abstract — I understood the definitions but 
+not WHY it worked the specific way it does. Breaking it into a 
+step-by-step numbered list made it click. I also initially misunderstood 
+a few specific relationships, which I corrected through follow-up 
+questions:
+
+1. I assumed the resolver could just skip straight to the Authoritative 
+   server since Root/TLD don't know the final answer anyway — but 
+   realized the resolver genuinely doesn't know WHERE that server even 
+   is until Root and TLD point the way, step by step.
+
+2. I assumed maybe only one "authoritative resolver" existed in general 
+   — but learned every single domain has its OWN Authoritative server, 
+   owned and controlled by whoever owns that domain.
+
+3. I mistakenly said "the TLD is .com" — but corrected this to 
+   understand TLD is a whole CATEGORY, and .com is just one specific 
+   example within that category, alongside .ng, .org, .io, and many 
+   others, each with its own separate server.
+
+### Tomorrow:
+
+Back to regular class — Day 4 for the bootcamp, but the 3rd real class 
+day. Not sure yet what's coming — possibly HTML, possibly more networking 
+fundamentals. Will find out and adapt the evening study block around 
+whatever's actually covered, same as always.
+```
+
