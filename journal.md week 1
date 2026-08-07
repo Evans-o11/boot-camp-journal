@@ -868,4 +868,117 @@ whatever's actually covered, same as always.
 
 
 
-Yeah more detailed point out everything I learnt and called out so when I go back I will understand it better. Remember the journal path. First the note well detailed of what I understand of what I found out and then what i found difficult and then the questions  illustration it how i did in my answer  i would have type myself but im tired so do it well okay tomorrow is class let's see tomorrow is the 3rd day let's see what it holds will we enter html?? I don't know yet but let's see
+ ## Day 4 - August 6, 2026
+
+### Topics covered in class:
+Introduction to programming logic using Scratch — variables, loops, 
+conditionals, and building a spiral animation
+
+---
+
+### What I learned:
+
+Today was my first real introduction to programming logic, using Scratch's 
+visual block system. I  built a program that makes a sprite draw a spiral 
+outward from the center, then unwind itself back to the exact center 
+point.
+
+**Block by block breakdown:**
+
+**"when 🚩 clicked"** — the starting point. As soon as the green flag is 
+clicked, everything below it starts running.
+
+**"set Radius to 0"** — Radius is a variable, like a labeled box that 
+holds one number. This line puts 0 inside that box, resetting it fresh 
+every time the flag is clicked.
+
+**"go to x: 0 y: 0"** — every spot on the Scratch screen has a coordinate 
+address made of two numbers: x (left/right) and y (up/down). x:0, y:0 is 
+the exact center of the screen. This teleports the sprite there instantly.
+
+**"point in direction 90"** — direction 90 in Scratch means "facing 
+right." This makes sure the sprite faces the same way every time the 
+program starts, so the spiral looks identical each run.
+
+**First loop — "repeat until Radius > 40":** this is a loop — "keep doing 
+whatever's inside me, over and over" — but it needs a stopping condition. 
+"Radius > 40" is a question: "is the number inside Radius bigger than 
+40?" As long as the answer is no, the loop keeps repeating. Once Radius 
+finally climbs above 40, the loop stops.
+
+Inside that loop, three things happen every single repeat:
+- **"turn ↺ 15 degrees"** — rotates the sprite 15 degrees counter-clockwise
+- **"move Radius steps"** — moves forward, but not a fixed distance — it 
+  moves however big the number currently inside Radius is
+- **"change Radius by 0.2"** — takes whatever's in Radius and adds 0.2 
+  to it
+
+**Why this makes a spiral:** every time through the loop, the sprite 
+turns a little, then moves forward — but each time it moves a little 
+farther than before, since Radius keeps growing by 0.2 each loop. 
+Turning + walking a growing distance, over and over, traces bigger and 
+bigger circles, which looks like a spiral.
+
+**Second loop — "repeat until not (Radius > 0)":** trickier phrasing. 
+"Radius > 0" asks "is Radius bigger than 0?" The word "not" flips the 
+answer, so "not (Radius > 0)" really means "Radius is 0 or less." So this 
+loop means: keep repeating until Radius has shrunk down to 0 or below.
+
+Inside it:
+- **"change Radius by -0.2"** — same idea as before, but subtracting 0.2 
+  each time, so Radius shrinks a little every loop
+- **"move (0 - Radius) steps"** — "0 - Radius" is simple subtraction: 
+  zero minus whatever's in Radius. Since Radius is positive, this always 
+  comes out negative. In Scratch, moving a negative number of steps means 
+  moving BACKWARD instead of forward. This undoes the walking from before.
+- **"turn ↻ 15 degrees"** — turns 15 degrees the OTHER way (clockwise 
+  this time). This undoes the earlier turn.
+
+**Why this unwinds the spiral perfectly:** each loop here does the exact 
+opposite of what the first loop did — shrink instead of grow, walk 
+backward instead of forward, turn the opposite way. Doing all the 
+opposite moves, in the same order, retraces the exact same path back to 
+the center.
+
+**Final safety net — "go to x: 0 y: 0" and "point in direction 90" 
+(repeated):** snaps the sprite exactly back to center and facing the same 
+way, in case tiny number rounding left it slightly off after all those 
+loops.
+
+---
+
+### Struggled with:
+
+I had real difficulty figuring out how to make the spiral pull back and 
+retrace the SAME line backward, rather than just spiraling off somewhere 
+random after it finished growing. I understood how the outward spiral 
+worked, but getting it to unwind cleanly along the exact same path took 
+extra research and trial.
+
+What I eventually figured out: the key wasn't just "reverse the 
+direction" — it was making sure EVERY single action from the growing 
+phase had an exact opposite in the shrinking phase, done in the same 
+order. Grow → shrink (change Radius by -0.2 instead of +0.2). Move 
+forward → move backward (using 0 - Radius, which flips the movement 
+negative). Turn one way → turn the exact opposite way (clockwise instead 
+of counter-clockwise). Once I made sure each of the three actions had its 
+precise mirror opposite, the sprite retraced its exact path back to 
+center instead of drifting off somewhere new.
+
+This was a genuinely good lesson beyond just Scratch — it's the first 
+time I really felt how a program is just a sequence of state changes, and 
+that "undoing" something isn't magic — it's deliberately reversing each 
+individual step that built it up in the first place.
+
+### Connecting this to real code (for when we start HTML/CSS/JS):
+
+- "set Radius to 0" = declaring a variable → `let radius = 0;`
+- "repeat until Radius > 40" = a while loop → `while (radius <= 40) { ... }`
+- "change Radius by 0.2" = incrementing a variable → `radius += 0.2;`
+- "change Radius by -0.2" = decrementing a variable → `radius -= 0.2;`
+
+### Tomorrow:
+
+Not sure yet what's coming next in class. Will bring today's understanding 
+of variables, loops, and conditionals forward, since these are foundational 
+concepts that'll show up again once we move into actual code.
