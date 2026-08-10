@@ -978,3 +978,566 @@ individual step that built it up in the first place.
 Not sure yet what's coming next in class. Will bring today's understanding 
 of variables, loops, and conditionals forward, since these are foundational 
 concepts that'll show up again once we move into actual code.
+
+
+
+## Day 5 - August 9, 2026
+
+### Topics covered in class:
+HTML fundamentals — why HTML isn't a programming language, `<div>`, 
+classes, and IDs
+
+---
+
+## PART 1: THE NOTES (Full Detail)
+
+### 1. What is HTML?
+
+HTML stands for **HyperText Markup Language**. It is the core language for 
+building websites. It structures and organizes content, allowing web 
+browsers to interpret and display it visually. It acts as the foundation 
+on which CSS and JavaScript are built.
+
+**What does HTML actually do?**
+
+It allows us to specify:
+- Headings
+- Paragraphs
+- Listing
+- Adding images
+- Adding emails
+- And even linking websites in our websites
+
+---
+
+### 2. Is HTML a Programming Language?
+
+**HTML is not a programming language — it is a markup language.**
+
+HTML isn't considered a programming language because it doesn't tell the 
+computer how to perform logic or make decisions. It tells the browser 
+what things are and how they are structured.
+
+It doesn't tell the computer "hey, do this, carry out this action, and 
+all that." Instead, it tells the browser "here's how you will display 
+this, here's this, here's that, lay this out like this and all that."
+
+**Going deeper — why exactly this matters technically:**
+
+HTML only helps the browser display text, images, links, and so on from 
+a website. It doesn't give the computer, nor tell the computer, to carry 
+out any logical task or assignment — hence it is not a programming 
+language.
+
+It simply tells a browser: "hey bro, this certain code is an image, this 
+is a link, it should appear like this, have this colour, and structure." 
+But it doesn't tell the computer "here, do this, here, think of this, 
+where do you put this, and all that." It's just written code that the 
+browser simply converts into visuals, so users can see and understand 
+those codes — it doesn't tell the computer to carry out any logical 
+action.
+
+**Example:**
+```html
+<h1>Hello World</h1>
+<p>Welcome to my website.</p>
+<button>Login</button>
+```
+HTML is telling the browser:
+- `<h1>` → this is a heading
+- `<p>` → this is a paragraph
+- `<button>` → this is a button
+
+It is describing the elements and their structure — nothing more.
+
+A programming language, by contrast, can perform actual logic. For 
+example, JavaScript can make a decision:
+```javascript
+let age = 20;
+
+if (age >= 18) {
+    console.log("Adult");
+} else {
+    console.log("Minor");
+}
+```
+Here, JavaScript is actually processing information and making a 
+decision — something HTML fundamentally cannot do.
+
+---
+
+### 3. My House Analogy (How I Understand HTML, CSS, and JavaScript)
+
+I understand the relationship between HTML, CSS, and JavaScript using a 
+house analogy:
+
+**HTML = the structure of the house**
+
+HTML is the structure of the house — the doors, windows, roofing, and 
+everything, even the light switch. All of that is HTML. HTML defines the 
+different parts of the webpage, just like a house has rooms, doors, 
+windows, and walls.
+
+**CSS = the appearance of the house**
+
+CSS is the painting — the colour of your tiles, colour of your doors and 
+windows, sizes of them, colour of your roof, even colour of your switch. 
+CSS controls things such as colours, size, spacing, position, fonts, and 
+overall appearance.
+
+**JavaScript = the behavior/functionality of the house**
+
+JavaScript is like the command that gives functionality to everything in 
+your house. When you open your door — where does it lead to? That's 
+JavaScript. When you turn on your light switch — what happens? That's 
+JavaScript. To enter your kitchen, which door do you pass through — those 
+functions lead you to exactly where you want to go. JavaScript gives 
+functionality to our code — without it, our codes/webpages are just 
+written images and text with no functionality.
+
+**My simple way of remembering it:**
+
+HTML → Structure
+CSS → Appearance
+JavaScript → Behavior
+
+
+---
+
+### 4. What is `<div>`?
+
+`<div>` stands for **division**. A `<div>` is a general-purpose container 
+used to group related HTML elements together.
+
+**Example:**
+```html
+<div>
+    <h1>My Website</h1>
+    <p>Welcome to my website.</p>
+    <button>Login</button>
+</div>
+```
+The `<div>` isn't saying that the content is a heading, paragraph, or 
+button. Instead, it's basically saying: "these elements belong together 
+as one group."
+
+**Why do we use `<div>`?**
+
+We use div to group codes. It acts as a container to separate codes from 
+other codes. It tells the browser: "hey, these codes aren't together with 
+these codes, so do justice when you are displaying them to the users or 
+anyone viewing them." Div tells the browser: "hey bro, these codes are 
+separate." It puts a whole code in a container, and the viewer/user or 
+anyone viewing that webpage can easily know and understand: "hey, these 
+are two different parts and doesn't go together." That's the work of div.
+
+**Example (from class practice):**
+```html
+Code 1:
+<div>
+    <header>James Bound</header>
+    <p>...</p>
+    <ul>
+        <li>...</li>
+        <li>...</li>
+        <li>...</li>
+    </ul>
+</div>
+
+Code 2:
+<h2>...</h2>
+<p>...</p>
+<p>...</p>
+<ol>
+    <li>...</li>
+    <li>...</li>
+</ol>
+```
+Two separate `<div>` blocks tell the browser these are two distinct 
+groups of content, not one continuous block.
+
+It can also be given a class so that CSS can style the group:
+```html
+<div class="login-box">
+    <h1>Login</h1>
+    <input type="text">
+    <button>Login</button>
+</div>
+```
+```css
+.login-box {
+    width: 300px;
+    padding: 20px;
+    background-color: lightgray;
+}
+```
+The class allows CSS to target that particular group.
+
+---
+
+### 5. What is a Class?
+
+A class is a reusable name or category that can be assigned to HTML 
+elements.
+
+**Example:**
+```html
+<p class="important">This is important.</p>
+<p class="important">This is also important.</p>
+<p>This is normal.</p>
+```
+The first two paragraphs share the class `important`. CSS can then target 
+that class:
+```css
+.important {
+    color: red;
+}
+```
+The two paragraphs with the `important` class will receive that styling. 
+The `.` before `important` tells CSS that `important` is a class 
+selector.
+
+**My own understanding of class:**
+
+To my own understanding, class is used to say: "hey, I need everything in 
+this block to have the same styling." Yes, class can still be used for 
+individual styling, but it's mostly for styling a group of codes. Let's 
+say every list, no matter how long the code is — any list will have a 
+specific CSS. One can use that class name countless times for each list 
+in the code. All you have to do is name it in the HTML file, and in CSS, 
+just call it and style it — automatically, all the `<li>` with that class 
+name will have the same CSS.
+
+---
+
+### 6. Why Are Classes Useful?
+
+Classes are especially useful when multiple elements need the same 
+styling.
+
+**Example:**
+```html
+<button class="btn">Login</button>
+<button class="btn">Sign Up</button>
+<button class="btn">Contact</button>
+```
+All three buttons share the class `btn`, so I can write the CSS once:
+```css
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+```
+Instead of creating separate CSS for every button, the same class can be 
+reused — once, several times, or hundreds of times, depending on what's 
+needed.
+
+**Example with list items:**
+```html
+<li class="menu-item">Home</li>
+<li class="menu-item">About</li>
+<li class="menu-item">Contact</li>
+<li class="menu-item">Services</li>
+```
+```css
+.menu-item {
+    color: blue;
+    font-size: 20px;
+}
+```
+Automatically, every `<li>` with the `menu-item` class gets the same CSS 
+— I don't have to create a separate CSS rule for every list item.
+
+---
+
+### 7. What is an ID?
+
+An ID gives an HTML element a unique identity.
+
+**Example:**
+```html
+<button id="login-button">Login</button>
+```
+The ID of this button is `login-button`. The important thing about an ID 
+is that it should uniquely identify that element on that page.
+
+---
+
+### 8. Can I Have Multiple IDs in One Project?
+
+**Yes!** This was something I initially found confusing. Having a unique 
+ID doesn't mean there can only be one ID in the entire project. I can 
+have many different IDs:
+```html
+<h1 id="main-title">My Website</h1>
+<button id="login-button">Login</button>
+<button id="signup-button">Sign Up</button>
+<div id="footer">Footer</div>
+```
+There are four different IDs here: `main-title`, `login-button`, 
+`signup-button`, `footer`. That's completely fine. The important thing is 
+that I shouldn't give MULTIPLE ELEMENTS the SAME ID on the same page.
+
+---
+
+### 9. Why Shouldn't I Reuse the Same ID?
+
+This would be incorrect:
+```html
+<li id="item">Home</li>
+<li id="item">About</li>
+<li id="item">Contact</li>
+```
+All three elements share the ID `item` — but an ID is supposed to 
+uniquely identify ONE element. Instead, if these elements genuinely 
+needed IDs, they should have different ones:
+```html
+<li id="home-item">Home</li>
+<li id="about-item">About</li>
+<li id="contact-item">Contact</li>
+```
+Now each one has its own identity.
+
+---
+
+### 10. ID vs Class
+
+**Class** represents a group/category:
+```html
+<button class="btn">Login</button>
+<button class="btn">Sign Up</button>
+<button class="btn">Contact</button>
+```
+All three buttons belong to the `btn` category. I can style them 
+together:
+```css
+.btn {
+    padding: 10px;
+}
+```
+
+**ID** represents a specific, unique element:
+```html
+<button id="login-button">Login</button>
+```
+This identifies that particular button. CSS can target it:
+```css
+#login-button {
+    background-color: blue;
+}
+```
+The `#` means that `login-button` is an ID selector.
+
+---
+
+### 11. Can a Class Be Used for Only One Element?
+
+**Yes.** For example:
+```html
+<button class="login-button">Login</button>
+```
+There is nothing wrong with this — a class can be used on only one 
+element. The difference is that classes are DESIGNED to be reusable, so 
+if later I have two elements with the same class, both can use it.
+
+---
+
+### 12. Why Use an ID If a Class Can Also Be Unique?
+
+I initially thought: "if I can just give every element a different class 
+name, why do I need IDs?" I realized the difference isn't simply "class 
+can do this, but ID can't" — there's overlap. Both classes and IDs can be 
+used by CSS to target elements. The main difference is what the name 
+REPRESENTS:
+
+- **Class:** "This element belongs to this group/category."
+- **ID:** "This is this specific element."
+
+---
+
+### 13. Using Class and ID Together
+
+An HTML element can have BOTH a class and an ID at the same time:
+```html
+<button id="login-button" class="btn">
+    Login
+</button>
+```
+Here:
+- `class="btn"` means: this button belongs to the general `btn` category, 
+  so it receives common button styling:
+```css
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+```
+- `id="login-button"` means: this particular button has the unique 
+  identity `login-button`, so it can be targeted specifically:
+```css
+#login-button {
+    background-color: blue;
+}
+```
+So one element can have both a class for shared characteristics AND an ID 
+for its unique identity.
+
+---
+
+## PART 2: MY 6 SELF-QUIZ QUESTIONS AND ANSWERS
+
+**Q1: Why is HTML called a "markup" language instead of a "programming" 
+language — what's the actual technical difference, not just the 
+definition?**
+
+HTML is called a markup language and not a programming language because 
+it only helps the browser display text, images, links, and so on from a 
+website. It doesn't give the computer, nor tell the computer, to carry 
+out any logical task or assignment — hence it is not a programming 
+language.
+
+It simply tells a browser: "hey bro, this certain code is an image, this 
+is a link, it should appear like this, have this colour, and structure." 
+But it doesn't tell the computer "here, do this, here think of this, 
+where do you put this, and all that." It's just written code that the 
+browser simply converts into visuals, so users can see and understand 
+those codes. It doesn't tell the computer to carry out any logical 
+action.
+
+**Q2: If `<div>` doesn't do any styling or behavior on its own, what's 
+actually the point of using it at all? Give a real example of a problem 
+it solves.**
+
+We use div to group codes. It acts as a container to separate codes from 
+other codes. It tells the browser: "hey, these codes aren't together with 
+these codes, so do justice when you are displaying them to the users or 
+anyone viewing them."
+
+Example — let's say we're writing:
+
+Code 1:
+
+<div> <header>James Bound</header> <p>...</p> <ul><li>...</li></ul> </div>
+
+Code 2:
+
+<h2>...</h2> <p>...</p> <ol><li>...</li></ol> ```` Div tells the browser: "hey bro, these codes are separate." It puts the whole Code 1 in a container, and anyone viewing that webpage can easily know: "hey, these are two different parts and don't go together." That's the work of div.
+
+Q3: You wrote that a class is like saying "everything in this group
+should have the same styling." Can you explain WHY reusability matters —
+what would go wrong if every single element needed its own separate CSS
+rule instead?
+
+Reusability matters so much because of styling. If you have a thousand
+lines of code, and hundreds of elements that you would want to have the
+same styling — let's say you want every list in your code to have the
+same CSS — the reasonable thing to do is to assign every single one of
+those elements the same class name. So when you want to style those
+elements, rather than styling each and every one of them one at a time,
+you can do them once, by just calling the assigned name which every one
+of those elements has, as they have been classed and assigned a name,
+which can be reused a thousand times in the same project. So it makes
+styling easy, fast, and moreover it keeps our codes in an organised way,
+also making it readable.
+
+If every single element needed its own separate CSS rule instead: if it's
+a huge project, let's say you're to style a thousand elements under 10
+minutes — if you give every one of them a class and assign them a name,
+with one call each, every one of those elements gets styled. But without
+it, you will spend hours doing one at a time, and may also skip or miss
+some elements unstyled. It will take a toll on the code, and make the
+code disorganised, especially at scale.
+
+Q4: What is the actual difference between how you'd use class="btn"
+vs id="login-button" on the exact same button — could you use both at
+once, and if so, why would you?
+
+To my own understanding, I would use class="btn" AND id="login-button"
+on the same button if I want that button to carry the same styling as
+every other button on that website (via the shared class), but also want
+it to be styled separately/uniquely, or be targetable individually (via
+the unique ID).
+
+Let's say I'm working on a fintech website project. It will have numerous
+buttons, but will only have a single login button and a single sign-up
+button — that's where id="login-button" and id="signup-button" come
+in. But if I want other buttons like home button, submit button, profile
+button, and all that to have the same styling, I can use class="btn" —
+meaning every button that has been categorized under that class="btn"
+will have the same styling.
+
+Confirmed: yes, you CAN use both at once on the same button — this is
+actually standard practice:
+
+html
+<button id="login-button" class="btn">Login</button>
+
+The class gives shared styling (padding, border-radius, same as every
+other button), while the ID lets you target THIS specific button for
+something unique — like a special colour, or hooking it up to JavaScript
+specifically.
+
+Q5: Why should you NEVER give two different elements the same ID on
+one page — what could actually break (technically) if you did?
+
+I honestly didn't know this one, so rather than guess, I researched it
+properly instead of wasting time faking an answer.
+
+What I learned: Two real, technical things break:
+
+JavaScript gets confused. When code uses
+document.getElementById("something"), it's designed to return exactly
+ONE element. If two elements share that same ID, JavaScript can only grab
+the FIRST one it finds, completely ignoring the second. So if code tried
+to make a button do something using its ID, and another element
+accidentally shared that ID, the code might silently target the wrong
+element — or seem to do nothing at all.
+It breaks the fundamental promise an ID makes. The entire meaning of
+an ID is "this is the ONE unique thing." If two elements share an ID,
+that promise is broken — this also technically makes the HTML invalid
+according to web standards, even if the browser still tries to render it.
+
+Simple way to remember it: an ID is like a national ID number — if two
+different people had the exact same ID number, any system trying to look
+someone up by that number wouldn't know which person is meant. That's the
+same chaos duplicate IDs cause in code.
+
+Q6: Using the house analogy you built — if HTML is structure and CSS
+is appearance, explain what would happen if a website had HTML and CSS
+but NO JavaScript at all. What would still work, and what wouldn't?
+
+If a website had HTML and CSS but no JavaScript at all — yes, you will be
+able to view the website, see it, and admire it. You as a user won't be
+able to do anything on that website, as it would be dysfunctional.
+
+Imagine you have a house, with roof, doors, and all that beautifully
+painted, but nothing works — nothing happens when you turn on the light
+switch to turn on the heater. Nothing happens.
+
+That's exactly a website without JavaScript. It doesn't function. It
+reads that website, one view-only website, no matter how you click
+signup or login, no matter how you click those buttons, nothing happens.
+Exactly a website without JavaScript — you can see the well laid out
+sign-up form but can't submit. You can see the login form but can't
+click. On your profile icon to do your changes — that website becomes
+unfunctional.
+
+Struggled with:
+
+Q5 was genuinely something I didn't know the answer to. Rather than
+guessing or making something up to fill the space, I chose to be honest
+and actually research it properly. I now understand it's not just "bad
+practice" — it's a real technical problem, since JavaScript's
+getElementById is designed to return exactly one element, and duplicate
+IDs break that guarantee.
+
+I also wasn't sure whether class and ID could be used together on the
+same element — confirmed today that yes, this is actually standard
+practice, not an either/or choice.
+
+Tomorrow:
+
+Not sure yet what's coming next in class — likely more HTML (semantic
+tags, forms, or moving into CSS properly). Will bring today's
+understanding of div, class, and id forward, since these are foundational
+for everything that comes after
