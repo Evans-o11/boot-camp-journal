@@ -1541,3 +1541,168 @@ Not sure yet what's coming next in class — likely more HTML (semantic
 tags, forms, or moving into CSS properly). Will bring today's
 understanding of div, class, and id forward, since these are foundational
 for everything that comes after
+
+
+
+# 📅 Day 6–7 — Monday, August 10 & Tuesday, August 11, 2026
+**Assignment: JavaScript Randomness — `Math.random()`, `Math.floor()`, `Math.ceil()`**
+
+> Note: Assignment was given in class on Monday (Day 6). Started it Monday, finished it Tuesday (Day 7), but didn't commit either day. Logging and pushing it now on Wednesday (Day 8 — no class today, self-study day) while catching up. We haven't formally started JavaScript yet, but this assignment required applying logical thinking to a JS snippet.
+
+![Raffle ticket assignment code](./images/day6-7-math-random-assignment.png)
+
+---
+
+## 📝 Assignment Breakdown
+
+### 1. The Problem
+Imagine a school raffle with numbered paper tickets in a box. You reach in, mix them, and pull one out — whatever number is on it wins. A computer can't literally reach into a box, so the code has to *simulate* that using numbers instead of paper.
+
+**Starting script (13 tickets):**
+```javascript
+// Step 1: Define the total number of raffle tickets sold
+const totalTickets = 13;
+
+// Step 2: Calculate the winning ticket number
+const winningTicket = Math.floor(Math.random() * totalTickets) + 1;
+
+// Step 3: Announce the winner!
+console.log("🎫 Drawing the winning raffle ticket...");
+console.log(`🎉 Congratulations to the holder of Ticket Number: ${winningTicket}!`);
+```
+
+### 2. What is "Random"?
+"Random" means: before it happens, you can't predict the outcome, and every outcome has a fair chance. Like a six-sided die — you don't know what you'll roll, but each number is equally likely. `Math.random()` is JavaScript's version of that die.
+
+### 3. What `Math.random()` Actually Gives You
+- Takes **no input** — always empty brackets: `Math.random()`
+- Produces a **decimal** between `0` (possible) and just under `1` (never reaches exactly 1)
+- Every decimal in that range is equally likely
+
+**Analogy:** A blank 1-meter measuring tape. Closing your eyes and pointing anywhere on it is like calling `Math.random()` — you could land anywhere from 0 to almost 1, totally unpredictably.
+
+```javascript
+Math.random() // → 0.4837211 (different, unpredictable decimal every time)
+```
+
+### 4. Turning a Decimal Into a Usable Whole Number
+A decimal like `0.62` isn't a valid ticket number. Three steps fix that, in order:
+
+**Step A — Stretch:** Multiply by the total range size.
+```javascript
+Math.random() * totalTickets
+// Example: 0.62 * 50 = 31
+```
+
+**Step B — Chop:** Round down using `Math.floor()`.
+```javascript
+Math.floor(Math.random() * totalTickets)
+// Example: Math.floor(31.42) = 31
+```
+
+**Step C — Shift:** Add 1, since real tickets start from 1, not 0.
+```javascript
+Math.floor(Math.random() * totalTickets) + 1
+// Example: 31 + 1 = 32
+```
+
+This "stretch → chop → shift" pattern works for *any* "pick a random whole number in a range" problem — dice rolls, lottery draws, random level selection, all follow the same shape.
+
+### 5. `Math.floor()` vs `Math.ceil()`
+
+| Function | What it does | Direction |
+|---|---|---|
+| `Math.floor()` | Drops the decimal, keeps the whole number below it | Always rounds **down** |
+| `Math.ceil()` | Jumps to the whole number above it if any decimal exists | Always rounds **up** |
+
+```javascript
+Math.floor(31.01)  // → 31
+Math.ceil(31.01)   // → 32
+
+Math.floor(31.99)  // → 31 (still down, even this close to 32)
+Math.ceil(31.99)   // → 32
+
+Math.floor(31.0)   // → 31 (already whole, stays)
+Math.ceil(31.0)    // → 31 (already whole, stays)
+```
+
+**Why `Math.floor` and not `Math.ceil` in the raffle formula:**
+`Math.floor` guarantees the highest possible value before `+1` is `totalTickets - 1`, which becomes exactly `totalTickets` after shifting — never higher.
+
+If `Math.ceil` were used with 200 students and `Math.random()` returns `0.998`:
+```javascript
+0.998 * 200 = 199.6
+Math.ceil(199.6) = 200        // rounds UP
+200 + 1 = 201                 // ❌ Ticket 201 doesn't exist!
+```
+With `Math.floor`, the same input stays safe:
+```javascript
+0.998 * 200 = 199.6
+Math.floor(199.6) = 199       // rounds DOWN
+199 + 1 = 200                 // ✅ Valid, matches an existing ticket
+```
+
+### 6. Why Use a Variable Instead of a Hardcoded Number
+```javascript
+const totalTickets = 50;
+const winningTicket = Math.floor(Math.random() * totalTickets) + 1;
+```
+The formula references `totalTickets` **by name**, not by typing the number directly in. The computer remembers: "I have a variable called `totalTickets`, currently `50`." Change the one line where it's defined, and every calculation depending on it updates automatically. This is called a **single source of truth** — a core programming habit. Hardcoding the number in multiple places means you'd have to hunt down and change every occurrence, which is an easy way to introduce bugs.
+
+### 7. My Solution: Adapting the Script for 50 Students
+1. Find the variable controlling ticket count: `const totalTickets = 13;`
+2. Change `13` to `50`: `const totalTickets = 50;`
+3. No other line changes — the rest of the script already references `totalTickets` by name.
+4. Run the script to confirm `winningTicket` only outputs numbers between 1 and 50.
+
+**Full corrected script:**
+```javascript
+const totalTickets = 50;
+const winningTicket = Math.floor(Math.random() * totalTickets) + 1;
+
+console.log("🎫 Drawing the winning raffle ticket...");
+console.log(`🎉 Congratulations to the holder of Ticket Number: ${winningTicket}!`);
+```
+
+### 8. Key Takeaway
+Any "pick a random whole number between two limits" problem in JavaScript follows the same shape:
+
+**Stretch → Chop → Shift**
+1. **Stretch** — multiply `Math.random()` by the size of your range
+2. **Chop** — use `Math.floor()` to round down to a whole number
+3. **Shift** — add (or subtract) to move the range to where it needs to start
+
+Once this pattern clicks, it applies far beyond raffles — dice rolls, random level selection, lottery draws, and more.
+
+---
+
+## 🧠 Self-Quiz (My Answers, Confirmed Correct)
+
+**Q1: Why can't we just use `Math.random()` by itself, with no multiplication?**
+A: `Math.random()` only ever produces a decimal below 1. Without multiplying by the total pool size, there's no way to scale that decimal into a usable whole number range. The result would always stay below 1.
+
+**Q2: What goes wrong if we forget the `+1`?**
+A: Without `+1`, the range becomes `0` to `totalTickets - 1` — one student gets "ticket 0" (which doesn't exist), and nobody ever gets the highest number. `+1` shifts the whole range up by one so every value maps to a real ticket.
+
+**Q3: What goes wrong if we use `Math.ceil` instead of `Math.floor`?**
+A: `Math.ceil` rounds up. In a 200-student raffle, if `Math.random()` returns `0.998`, `0.998 * 200 = 199.6`, and `Math.ceil` rounds that up to `200`. Adding `1` gives `201` — an impossible ticket. `Math.floor` avoids this by rounding down to `199`, giving `200` — a valid ticket.
+
+**Q4: Why doesn't changing `totalTickets` from 13 to 50 require touching the `Math.floor(...)` line?**
+A: `totalTickets` is a variable — a named container holding a value. The formula references it by name, not by literal value. The computer substitutes whatever value is currently assigned. Changing the one definition line updates every dependent calculation automatically.
+
+**Follow-up: Is it safe to say `Math.random()` never generates 1 nor 50 (in a 1–50 range)?**
+A: Not quite — both 1 and 50 ARE reachable in the *final* result, even though `Math.random()` alone never touches exactly 1.
+- **1 is reachable:** if `Math.random()` returns `0` (or near 0), `Math.floor(0 * 50) + 1 = 1`.
+- **50 is reachable:** if `Math.random()` returns something extremely close to 1 (like `0.9999999`), `0.9999999 * 50 = 49.999995`, `Math.floor(...) = 49`, and `49 + 1 = 50`.
+
+The real boundary: `Math.floor(Math.random() * N)` produces any whole number from `0` to `N - 1`. Adding `1` shifts that whole set up by one, losing nothing at either end.
+
+---
+
+## 🧗 Struggled With
+- Trusting that `Math.random()` never hitting exactly 1 doesn't mean the *final formula* can't hit the top of the range — took a second pass to see why `+1` closes that gap.
+- Seeing why `Math.ceil` "feels" more intuitive for rounding but actually breaks the upper bound.
+- Staying on top of committing work the same day it's done — this entry is a reminder to push immediately after finishing, not days later.
+
+## 🔜 Today / Next (Day 8 — Wednesday, August 12, 2026, self-study — no class)
+- No formal class today. Using the day to self-study and catch up on this commit.
