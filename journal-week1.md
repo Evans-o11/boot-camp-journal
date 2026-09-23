@@ -1,58 +1,53 @@
 Day 1 - August 3, 2026
 
 Learned:
-How the internet works  IP addresses, HTTP, URLs, ISPs. Learned how and why 
-devices are assigned unique numerical IDs, what assigns them those IDs, and 
+How the internet works IP addresses, HTTP, URLs, ISPs. Learned how and why
+devices are assigned unique numerical IDs, what assigns them those IDs, and
 what happens if those IDs are not assigned to each device.
 
 Learned that any device that can send or receive data is called a host.
 
-There are 2 types of IP address  public and private:
-- Public IP address: the IP assigned to our router from its ISP (Internet 
+There are 2 types of IP address public and private:
+
+- Public IP address: the IP assigned to our router from its ISP (Internet
   Service Provider)
-- Private IP address: the IP assigned to our devices (phone, laptop) from 
-  our router, using a protocol called DHCP (Dynamic Host Configuration 
+- Private IP address: the IP assigned to our devices (phone, laptop) from
+  our router, using a protocol called DHCP (Dynamic Host Configuration
   Protocol)
 
-The gateway for any device is our router  devices need to pass through the 
+The gateway for any device is our router devices need to pass through the
 router first before having access to the internet.
 
 Struggled with:
-Had issues understanding why the system used for SMS charges only one party 
-(the sender), while the receiver gets the information without being charged. 
-For example, on SMS, Mr B can send a message to Mr A, and Mr B gets charged 
-for it  all Mr A has to do to receive that data is make sure his device is 
-ON. That works for phone calls too. But for WhatsApp and other web/apps, 
-both parties are charged  both need data balance which gets deducted when 
+Had issues understanding why the system used for SMS charges only one party
+(the sender), while the receiver gets the information without being charged.
+For example, on SMS, Mr B can send a message to Mr A, and Mr B gets charged
+for it all Mr A has to do to receive that data is make sure his device is
+ON. That works for phone calls too. But for WhatsApp and other web/apps,
+both parties are charged both need data balance which gets deducted when
 they send OR receive data.
 
-Answer (worked out after class): This isn't a technical internet limitation, 
-it's a billing model difference. SMS/calls run on old circuit-switched 
-telecom networks, where sender-pays billing was built into agreements 
-between telecom companies decades ago. WhatsApp/web data runs on 
-packet-switched networks  both devices are actively sending AND receiving 
-small packets constantly, even just opening a chat. Since both sides 
-actively use data, both get charged by their own network for whatever data 
+Answer (worked out after class): This isn't a technical internet limitation,
+it's a billing model difference. SMS/calls run on old circuit-switched
+telecom networks, where sender-pays billing was built into agreements
+between telecom companies decades ago. WhatsApp/web data runs on
+packet-switched networks both devices are actively sending AND receiving
+small packets constantly, even just opening a chat. Since both sides
+actively use data, both get charged by their own network for whatever data
 their own device uses.
 
-DNS servers and protocols were also talked about in class but I couldn't 
-grasp them well. Going back to work on them tomorrow alongside whatever 
+DNS servers and protocols were also talked about in class but I couldn't
+grasp them well. Going back to work on them tomorrow alongside whatever
 tomorrow's topic is.
 
 Tomorrow:
-Tomorrow's topic might be cloud, packets  we haven't been given a scheme/
+Tomorrow's topic might be cloud, packets we haven't been given a scheme/
 syllabus to follow to stay ahead, though it's only the first day. Let's see.
-
-
-
-
-
-
-
 
 ## Day 2 - August 4, 2026
 
 ### Topics covered in class:
+
 Switches, Routers, LAN, WAN, ISPs, Routing Tables, VPNs, Packets/Frames
 
 ---
@@ -61,34 +56,32 @@ Switches, Routers, LAN, WAN, ISPs, Routing Tables, VPNs, Packets/Frames
 
 ### 1. The Switch — What It Is and Why We Need It
 
-A switch is a physical device used to connect multiple computers together 
-within the same local environment — like inside a single office, a single 
+A switch is a physical device used to connect multiple computers together
+within the same local environment — like inside a single office, a single
 classroom, or a single house — so that all of them can talk to each other.
 
-Every computer connects to the switch using a physical cable. The most 
-common type is a copper cable with an RJ45 connector. These cables come in 
-different categories or "grades" — CAT-5, CAT-6, and so on — with the 
-higher numbers generally meaning the cable can carry data faster and more 
-reliably. There's also fiber optic cable, which is faster and better than 
-copper cable overall, but for connecting a regular computer into a switch, 
-copper cable (CAT-5/CAT-6) is what's normally used. Fiber is more common 
-for the bigger, longer-distance connections behind the scenes, like the 
+Every computer connects to the switch using a physical cable. The most
+common type is a copper cable with an RJ45 connector. These cables come in
+different categories or "grades" — CAT-5, CAT-6, and so on — with the
+higher numbers generally meaning the cable can carry data faster and more
+reliably. There's also fiber optic cable, which is faster and better than
+copper cable overall, but for connecting a regular computer into a switch,
+copper cable (CAT-5/CAT-6) is what's normally used. Fiber is more common
+for the bigger, longer-distance connections behind the scenes, like the
 ones ISPs use.
 
-One important limitation: **a switch cannot communicate wirelessly.** It 
-only works through physical cables plugged into its ports. If you want 
-devices in the same area to connect to each other WITHOUT cables — over 
-WiFi instead — you need a different device called an **Access Point**. An 
-Access Point uses an antenna to send and receive signals wirelessly, doing 
-a similar job to a switch, but without needing a cable plugged into every 
+One important limitation: **a switch cannot communicate wirelessly.** It
+only works through physical cables plugged into its ports. If you want
+devices in the same area to connect to each other WITHOUT cables — over
+WiFi instead — you need a different device called an **Access Point**. An
+Access Point uses an antenna to send and receive signals wirelessly, doing
+a similar job to a switch, but without needing a cable plugged into every
 single device.
 
+PC1 PC2 PC3 PC4
+| | | |
 
-PC1        PC2        PC3        PC4
- |          |          |          |
-
-
- cable cable cable cable
+cable cable cable cable
 | | | |
 +----------+----------+----------+
 |
@@ -99,18 +92,18 @@ Any of them can instantly send data to any other one.
 No internet needed for this — they're just talking
 to each other locally.
 
-**Key point to remember:** a switch is completely sufficient for computers 
-in the SAME LAN to talk to each other. A switch has ZERO role in giving 
-any device access to the internet. That's a completely separate job, done 
+**Key point to remember:** a switch is completely sufficient for computers
+in the SAME LAN to talk to each other. A switch has ZERO role in giving
+any device access to the internet. That's a completely separate job, done
 by a different device — the router.
 
 ---
 
 ### 2. The Router — What It Is and Why It's Different From a Switch
 
-A router's job is fundamentally different from a switch's job. While a 
-switch connects devices within ONE network, a router connects one network 
-to a COMPLETELY DIFFERENT network — and most importantly, it's the device 
+A router's job is fundamentally different from a switch's job. While a
+switch connects devices within ONE network, a router connects one network
+to a COMPLETELY DIFFERENT network — and most importantly, it's the device
 that gives a local network (a LAN) access to the internet.
 
 PC1---+
@@ -123,99 +116,95 @@ the exact order the data travels through:
 
 PC1 → Switch (via cable) → Router (via cable) → ISP → Internet
 
-
-Something worth noting: **a home router is actually a combo device** — 
-it's a switch AND a router built into one single box. That's why in a 
-normal house, you only see one box on the wall, but it's secretly doing 
-two separate jobs at once: letting your devices talk to each other locally 
-(switch job), AND giving all of them a path out to the internet 
+Something worth noting: **a home router is actually a combo device** —
+it's a switch AND a router built into one single box. That's why in a
+normal house, you only see one box on the wall, but it's secretly doing
+two separate jobs at once: letting your devices talk to each other locally
+(switch job), AND giving all of them a path out to the internet
 (router job).
 
-**Single Point of Failure — an important side idea:** if you build a 
-network where absolutely everything depends on ONE single device (like one 
-router, with no backup), and that one device fails or loses power, 
-EVERYTHING connected to it fails at the same time. This is why serious 
-network design tries to avoid relying on just one point — it's a real risk 
+**Single Point of Failure — an important side idea:** if you build a
+network where absolutely everything depends on ONE single device (like one
+router, with no backup), and that one device fails or loses power,
+EVERYTHING connected to it fails at the same time. This is why serious
+network design tries to avoid relying on just one point — it's a real risk
 that engineers actively plan around.
 
 ---
 
 ### 3. Routing Tables — How a Router Knows Where to Send Things
 
-Every router must have a special internal table called a **routing 
-table**. This table's whole job is to tell the router exactly WHICH 
-direction/path to send each individual packet of data, so it takes the 
-most efficient route toward its final destination instead of wandering 
+Every router must have a special internal table called a **routing
+table**. This table's whole job is to tell the router exactly WHICH
+direction/path to send each individual packet of data, so it takes the
+most efficient route toward its final destination instead of wandering
 aimlessly or getting lost.
 
-Think of it like this: if a router had no routing table, it would be like 
-a delivery driver with no map and no addresses — packages would just get 
-handed out randomly or dropped, and most of them would never reach the 
-person who actually needs them. The routing table is what makes sure data 
+Think of it like this: if a router had no routing table, it would be like
+a delivery driver with no map and no addresses — packages would just get
+handed out randomly or dropped, and most of them would never reach the
+person who actually needs them. The routing table is what makes sure data
 reaches the right destination quickly and reliably, every single time.
 
 ---
 
 ### 4. LAN (Local Area Network) — Fully Explained
 
-A LAN is a collection of devices connected together within ONE physical 
-location — think one school building, one office floor, or one house. 
-The devices are close enough together to be wired (or wirelessly 
+A LAN is a collection of devices connected together within ONE physical
+location — think one school building, one office floor, or one house.
+The devices are close enough together to be wired (or wirelessly
 connected via Access Point) into the same switch.
 
-**Important restriction to remember:** you cannot create a LAN between 
-computers that are physically far away from each other — like a computer 
-in Lagos and a computer in London. A LAN, by definition, only exists 
-within a single physical location. A switch is the device that actually 
+**Important restriction to remember:** you cannot create a LAN between
+computers that are physically far away from each other — like a computer
+in Lagos and a computer in London. A LAN, by definition, only exists
+within a single physical location. A switch is the device that actually
 creates a LAN.
-
 
 [ ONE PHYSICAL BUILDING / ONE OFFICE ]
 
-PC1     PC2     PC3     PC4     PC5
- |       |       |       |       |
- +-------+-------+-------+-------+
-                |
-            [ SWITCH ]
+PC1 PC2 PC3 PC4 PC5
+| | | | |
++-------+-------+-------+-------+
+|
+[ SWITCH ]
 
 Everything inside this box is ONE Local Area Network.
 
-
-Inside a LAN, data being passed between devices at this local level is 
-sometimes specifically called a **frame** rather than a packet — frame is 
-the term used for that local, switch-level movement of data, while packet 
-is used more broadly, including once data leaves the LAN and travels 
+Inside a LAN, data being passed between devices at this local level is
+sometimes specifically called a **frame** rather than a packet — frame is
+the term used for that local, switch-level movement of data, while packet
+is used more broadly, including once data leaves the LAN and travels
 across networks.
 
-If Computer A is able to successfully send data directly to Computer B, 
-that on its own tells you something important: it means both computers 
+If Computer A is able to successfully send data directly to Computer B,
+that on its own tells you something important: it means both computers
 are on the same network.
 
-The physical holes/connectors on the back of a switch, where all the 
-cables plug in, are called **LAN ports**. Generally, the more LAN ports a 
-switch has, the more expensive that switch is — because it can support 
+The physical holes/connectors on the back of a switch, where all the
+cables plug in, are called **LAN ports**. Generally, the more LAN ports a
+switch has, the more expensive that switch is — because it can support
 more devices at once.
 
 ---
 
 ### 5. WAN (Wide Area Network) — Fully Explained
 
-A WAN is what you get when you combine multiple separate LANs — often 
-located far apart from each other, sometimes in completely different 
+A WAN is what you get when you combine multiple separate LANs — often
+located far apart from each other, sometimes in completely different
 cities or countries — into one connected system.
 
-**Why does a WAN even need to exist?** Here's the reasoning: the internet 
-itself is a PUBLIC network. Anyone, anywhere, can technically access parts 
-of it. But imagine a large company with offices in Lagos, Abuja, and 
-London. Their computers in each city DO need to constantly talk to each 
-other — sharing files, sending messages, accessing shared company systems 
-— and they need to do this reliably and PRIVATELY, not just openly on the 
-same public internet everyone else uses. So instead of relying purely on 
-the open public internet, the company builds its OWN private network that 
-runs on top of the public internet. That private, company-only network 
-stretched across multiple LANs in different locations is what we call a 
+**Why does a WAN even need to exist?** Here's the reasoning: the internet
+itself is a PUBLIC network. Anyone, anywhere, can technically access parts
+of it. But imagine a large company with offices in Lagos, Abuja, and
+London. Their computers in each city DO need to constantly talk to each
+other — sharing files, sending messages, accessing shared company systems
+— and they need to do this reliably and PRIVATELY, not just openly on the
+same public internet everyone else uses. So instead of relying purely on
+the open public internet, the company builds its OWN private network that
+runs on top of the public internet. That private, company-only network
+stretched across multiple LANs in different locations is what we call a
 WAN.
-
 
 LAGOS OFFICE ABUJA OFFICE LONDON OFFICE
 (a LAN) (a LAN) (a LAN)
@@ -229,44 +218,44 @@ LAGOS OFFICE ABUJA OFFICE LONDON OFFICE
      company's own computers. That private layer,
      stretched across all three locations, IS the WAN.
 
-An important thing to remember: a WAN literally cannot exist or function 
-without the internet underneath it — it depends entirely on the internet 
+An important thing to remember: a WAN literally cannot exist or function
+without the internet underneath it — it depends entirely on the internet
 as its foundation, then adds a private, secure layer on top.
 
 ---
 
 ### 6. VPN (Virtual Private Network) — Fully Explained
 
-A VPN creates what's called a "tunnel" — a special, secure, encrypted 
-connection that runs over a public network (the internet). This is 
-actually the exact technology WAN networks are typically built with — a 
-company's WAN, connecting Lagos, Abuja, and London, is commonly built 
+A VPN creates what's called a "tunnel" — a special, secure, encrypted
+connection that runs over a public network (the internet). This is
+actually the exact technology WAN networks are typically built with — a
+company's WAN, connecting Lagos, Abuja, and London, is commonly built
 using VPN tunnels running between each office's router.
 
-**Why does a company need this specifically?** Because the internet is 
-public, which means any sufficiently skilled person could potentially 
-intercept data traveling across it if it isn't protected. A VPN solves 
-this by encrypting the data traveling between two points, so that even if 
-someone manages to intercept it along the way, all they'd see is 
-scrambled, unreadable information. Only the router at each end (each 
-office) holds the correct key to decrypt that data back into readable 
-form before handing it to the actual employee who needs it. It's worth 
-remembering that there is no such thing as 100% guaranteed security on 
-the internet — but a VPN makes intercepted data significantly harder to 
+**Why does a company need this specifically?** Because the internet is
+public, which means any sufficiently skilled person could potentially
+intercept data traveling across it if it isn't protected. A VPN solves
+this by encrypting the data traveling between two points, so that even if
+someone manages to intercept it along the way, all they'd see is
+scrambled, unreadable information. Only the router at each end (each
+office) holds the correct key to decrypt that data back into readable
+form before handing it to the actual employee who needs it. It's worth
+remembering that there is no such thing as 100% guaranteed security on
+the internet — but a VPN makes intercepted data significantly harder to
 actually read or use, which is the realistic goal.
 
-**Quick summary of the relationship between these tools:** we use a 
-switch to create a LAN. We use a router (often combined with VPN 
-technology) to create a WAN. With a WAN properly set up, devices in 
-completely different countries can act and communicate as if they were 
+**Quick summary of the relationship between these tools:** we use a
+switch to create a LAN. We use a router (often combined with VPN
+technology) to create a WAN. With a WAN properly set up, devices in
+completely different countries can act and communicate as if they were
 sitting in the very same room.
 
 ---
 
 ### 7. How the Internet Backbone and ISPs Actually Work
 
-The term **internet backbone** refers to the massive network set up 
-collectively by global ISPs, specifically so that they can all 
+The term **internet backbone** refers to the massive network set up
+collectively by global ISPs, specifically so that they can all
 communicate with each other across the entire planet.
 
 YOUR HOUSE
@@ -279,26 +268,25 @@ YOUR HOUSE
 |
 [ THE REST OF THE WORLD'S INTERNET ]
 
-
-The very first step in connecting to the internet, for anyone, anywhere, 
-is always through a **local ISP**. In fact, if you physically look at your 
-own home router, you'll usually be able to see a cable running out of it 
+The very first step in connecting to the internet, for anyone, anywhere,
+is always through a **local ISP**. In fact, if you physically look at your
+own home router, you'll usually be able to see a cable running out of it
 that connects to your local ISP's equipment.
 
-**An interesting exception worth noting:** some local ISPs are actually 
-able to connect directly to a global ISP, completely skipping the regional 
-ISP layer in between. This usually happens because that specific local ISP 
-happens to already have strong, direct infrastructure links close to a 
+**An interesting exception worth noting:** some local ISPs are actually
+able to connect directly to a global ISP, completely skipping the regional
+ISP layer in between. This usually happens because that specific local ISP
+happens to already have strong, direct infrastructure links close to a
 global ISP's network — so they don't need the extra middle step.
 
-**Peering** is a specific technique where a server sets up an almost 
-direct connection to a user, deliberately skipping unnecessary extra hops 
-along the way. This is mainly used by very large companies (think Google, 
+**Peering** is a specific technique where a server sets up an almost
+direct connection to a user, deliberately skipping unnecessary extra hops
+along the way. This is mainly used by very large companies (think Google,
 Netflix) to make their content reach users noticeably faster.
 
-**In simple terms, accessing a website works like this:** your device (as 
-the user) sends a request message out to the destination server. That 
-server receives it, processes what was asked for, and sends a response 
+**In simple terms, accessing a website works like this:** your device (as
+the user) sends a request message out to the destination server. That
+server receives it, processes what was asked for, and sends a response
 message back to you.
 
 ---
@@ -307,32 +295,31 @@ message back to you.
 
 **Q1: What is the difference between a switch and a router?**
 
-A switch's entire job is to interconnect computers that are within the 
-same local environment, allowing them to communicate with each other. A 
-router's job is completely different — it connects a network to a 
-DIFFERENT network entirely, most importantly giving that local network 
+A switch's entire job is to interconnect computers that are within the
+same local environment, allowing them to communicate with each other. A
+router's job is completely different — it connects a network to a
+DIFFERENT network entirely, most importantly giving that local network
 access out to the internet.
 
 PC1---+
 PC2---+--[ SWITCH ]---[ ROUTER ]---[ THE INTERNET ]
 
-
-Computers connected through a switch can share data and communicate 
-freely with each other with no restrictions. BUT, for those same 
-computers to actually reach the internet, they specifically need the 
-router — the router is the device physically connected to the ISP (via 
-cable), and it's what provides the actual gateway that lets devices use 
+Computers connected through a switch can share data and communicate
+freely with each other with no restrictions. BUT, for those same
+computers to actually reach the internet, they specifically need the
+router — the router is the device physically connected to the ISP (via
+cable), and it's what provides the actual gateway that lets devices use
 the internet at all.
 
-**Q2: Why can 2 devices on the same LAN communicate through a switch 
+**Q2: Why can 2 devices on the same LAN communicate through a switch
 without using the router?**
 
-These two devices can communicate purely through a switch, with zero 
-involvement from a router, because the switch has physical ports where 
-cables from every single computer in that local area (an office, a 
-school, wherever) are plugged in directly. All these computers connect 
-into that one switch, which receives incoming data, processes it, and 
-figures out exactly which device that specific packet of data is meant 
+These two devices can communicate purely through a switch, with zero
+involvement from a router, because the switch has physical ports where
+cables from every single computer in that local area (an office, a
+school, wherever) are plugged in directly. All these computers connect
+into that one switch, which receives incoming data, processes it, and
+figures out exactly which device that specific packet of data is meant
 for — then forwards it directly there.
 
 If Device A wants Device B to receive some data:
@@ -343,14 +330,13 @@ data, reads who
 it's meant for,
 forwards it there)
 
-
-So yes — these two devices, connected on the same LAN, CAN fully 
-communicate with each other via the switch alone, with no router 
-involved. But it's important to remember: without a router in the 
-picture, neither of them will have any access to the internet 
+So yes — these two devices, connected on the same LAN, CAN fully
+communicate with each other via the switch alone, with no router
+involved. But it's important to remember: without a router in the
+picture, neither of them will have any access to the internet
 whatsoever.
 
-**Q3: If my laptop wants to open www.google.com, describe the journey 
+**Q3: If my laptop wants to open www.google.com, describe the journey
 from my laptop until it reaches the Google server.**
 
 MY LAPTOP
@@ -381,118 +367,117 @@ HOME ROUTER
 ↓
 MY LAPTOP → the website finally loads on my screen
 
-
-One extra detail worth remembering: if a Google server happens to be 
-geographically close to me, or if my ISP happens to have particularly 
-strong, direct infrastructure links to Google's own network, the request 
-might not need to travel all the way out through a global ISP at all — it 
+One extra detail worth remembering: if a Google server happens to be
+geographically close to me, or if my ISP happens to have particularly
+strong, direct infrastructure links to Google's own network, the request
+might not need to travel all the way out through a global ISP at all — it
 could reach Google's server through a much more direct path.
 
-**Q4: If a company has offices in Abuja, Lagos, and London, would they 
+**Q4: If a company has offices in Abuja, Lagos, and London, would they
 use a LAN or a WAN to connect all the offices?**
 
-They would need to use a WAN, not a LAN. If they tried to use a LAN, that 
-would mean literally, physically wiring laptops sitting in Abuja directly 
-to laptops sitting in London — which would require an impossibly long 
-cable, would be wildly impractical, and would cost an enormous, 
-unjustifiable amount of money. Instead, realistically, each office simply 
-keeps and manages its own internal LAN. Then, all three separate LANs get 
-connected together over the internet, through a private line that the 
-company itself sets up and controls — and that entire combined system is 
-what we call the WAN. It's worth remembering clearly: a WAN literally 
-cannot exist or function without the internet as its underlying 
+They would need to use a WAN, not a LAN. If they tried to use a LAN, that
+would mean literally, physically wiring laptops sitting in Abuja directly
+to laptops sitting in London — which would require an impossibly long
+cable, would be wildly impractical, and would cost an enormous,
+unjustifiable amount of money. Instead, realistically, each office simply
+keeps and manages its own internal LAN. Then, all three separate LANs get
+connected together over the internet, through a private line that the
+company itself sets up and controls — and that entire combined system is
+what we call the WAN. It's worth remembering clearly: a WAN literally
+cannot exist or function without the internet as its underlying
 foundation.
 
 **Q5: What is a host?**
 
-A host is simply any device that is capable of communicating with other 
-devices on a network. Common examples include: phones, laptops, and 
+A host is simply any device that is capable of communicating with other
+devices on a network. Common examples include: phones, laptops, and
 desktop computers.
 
-**Q6: Your home router loses power. What devices in my house will still 
-be able to communicate with each other? Will they still be able to 
+**Q6: Your home router loses power. What devices in my house will still
+be able to communicate with each other? Will they still be able to
 access the internet?**
 
-If my home router suddenly and completely loses power, the devices that 
-will STILL be able to communicate with each other are the ones that were 
-set up to talk through the switch portion of that combined home router 
-device — because local, switch-level communication genuinely does not 
-require the router portion to be working at all. HOWEVER, none of those 
-devices will have ANY access to the internet during this time, because 
-the router is specifically what serves as the gateway to the internet — 
-and without power reaching it, that gateway is simply gone until power is 
+If my home router suddenly and completely loses power, the devices that
+will STILL be able to communicate with each other are the ones that were
+set up to talk through the switch portion of that combined home router
+device — because local, switch-level communication genuinely does not
+require the router portion to be working at all. HOWEVER, none of those
+devices will have ANY access to the internet during this time, because
+the router is specifically what serves as the gateway to the internet —
+and without power reaching it, that gateway is simply gone until power is
 restored.
 
-**Q7: A router has a routing table. Why? What will happen if it doesn't 
+**Q7: A router has a routing table. Why? What will happen if it doesn't
 have a routing table?**
 
-A router has a routing table specifically because that table tells the 
-router exactly which path each individual packet passing through it 
-should take, so that whatever data is being sent reaches its destination 
-efficiently and reliably. You can genuinely think of it like a physical 
-road map handed to a delivery driver — in this case, the "packet" is the 
-delivery driver, and the routing table is the map telling that driver 
-exactly which road to take to reach the receiver as quickly and easily as 
-possible. Without a routing table in place, those data packets would 
-essentially become lost — with no instructions on which direction to go, 
+A router has a routing table specifically because that table tells the
+router exactly which path each individual packet passing through it
+should take, so that whatever data is being sent reaches its destination
+efficiently and reliably. You can genuinely think of it like a physical
+road map handed to a delivery driver — in this case, the "packet" is the
+delivery driver, and the routing table is the map telling that driver
+exactly which road to take to reach the receiver as quickly and easily as
+possible. Without a routing table in place, those data packets would
+essentially become lost — with no instructions on which direction to go,
 they would never actually reach their intended destination at all.
 
-**Q8: A company wants employees in different countries to work as if they 
+**Q8: A company wants employees in different countries to work as if they
 were in the same office. Why might they use a VPN?**
 
-They would likely use a VPN specifically to mask and protect the data 
-packets traveling from one office location to another. The internet, as a 
-whole, is fundamentally a public place — meaning any sufficiently skilled 
-person could potentially gain access to unprotected data traveling across 
-it. Given that this company specifically wants employees sitting in 
-completely different countries to be able to work together as though they 
-were physically in the very same office, they would use a VPN to encrypt 
-absolutely all the data both offices send and receive between each other, 
-making it genuinely secure. It's worth always remembering: there is no 
-such thing as 100% guaranteed security anywhere on the internet — but a 
-VPN makes intercepted data dramatically harder to actually read or use, 
-and keeps it properly encrypted so that only the router sitting at each 
-office is able to decrypt that data, right before it's finally passed 
+They would likely use a VPN specifically to mask and protect the data
+packets traveling from one office location to another. The internet, as a
+whole, is fundamentally a public place — meaning any sufficiently skilled
+person could potentially gain access to unprotected data traveling across
+it. Given that this company specifically wants employees sitting in
+completely different countries to be able to work together as though they
+were physically in the very same office, they would use a VPN to encrypt
+absolutely all the data both offices send and receive between each other,
+making it genuinely secure. It's worth always remembering: there is no
+such thing as 100% guaranteed security anywhere on the internet — but a
+VPN makes intercepted data dramatically harder to actually read or use,
+and keeps it properly encrypted so that only the router sitting at each
+office is able to decrypt that data, right before it's finally passed
 along to each individual employee who needs it.
 
 ---
 
-**Q9: Explain the difference between the internet, router, switch, LAN, 
-WAN, and IP address — using a football analogy simple enough for a 
+**Q9: Explain the difference between the internet, router, switch, LAN,
+WAN, and IP address — using a football analogy simple enough for a
 10-year-old to understand.**
 
-Imagine you're watching your favorite football team play, lined up in a 
-4-5-1 formation. Every single player has one fixed spot on the pitch that 
-they stay in — nobody just randomly wanders off to wherever they feel 
-like. They stay in their position and wait for the ball or for 
+Imagine you're watching your favorite football team play, lined up in a
+4-5-1 formation. Every single player has one fixed spot on the pitch that
+they stay in — nobody just randomly wanders off to wherever they feel
+like. They stay in their position and wait for the ball or for
 instructions.
-                ⚽ TEAM B's GOAL ⚽
-                      (far away)
-                         |
-                         |
-            THE OPEN PITCH / MIDFIELD
-                = THE INTERNET
-          (a big, shared space BOTH 
-           teams have to use to reach
-           each other — nobody owns it)
-                         |
-                         |
-                        ST
-                  = THE ROUTER
-          (the ONLY player who leaves the
-           team's own half and pushes out
-           toward the other side. If ST
-           didn't exist, the team could
-           NEVER reach the other side —
-           they could never score. Same
-           with a router: no router means
-           a LAN can NEVER reach the
-           internet, no matter what.)
-                         |
-                         |
- LF          LM          |          RM
-   ↖           ↘         |         ↙
-     ↖           ↘       |       ↙
+⚽ TEAM B's GOAL ⚽
+(far away)
+|
+|
+THE OPEN PITCH / MIDFIELD
+= THE INTERNET
+(a big, shared space BOTH
+teams have to use to reach
+each other — nobody owns it)
+|
+|
+ST
+= THE ROUTER
+(the ONLY player who leaves the
+team's own half and pushes out
+toward the other side. If ST
+didn't exist, the team could
+NEVER reach the other side —
+they could never score. Same
+with a router: no router means
+a LAN can NEVER reach the
+internet, no matter what.)
+|
+|
+LF LM | RM
+↖ ↘ | ↙
+↖ ↘ | ↙
 
 LCM -------↘------------\ | /------------↙------- RCM
 ↘ \ | / ↙
@@ -514,99 +499,98 @@ LB RB
 
 **Here's how each part maps, explained simply:**
 
-**CM is the Switch.** Look at the picture — literally every single 
-player, no matter where they're standing, passes the ball back through CM 
-before it goes anywhere else. That's EXACTLY what a switch does in real 
-life: every device sitting on the same local network connects back 
-through one central point (the switch) whenever it wants to talk to any 
-other device. CM never actually kicks the ball out of the team's own 
-half — CM's entire job, start to finish, is just moving the ball between 
+**CM is the Switch.** Look at the picture — literally every single
+player, no matter where they're standing, passes the ball back through CM
+before it goes anywhere else. That's EXACTLY what a switch does in real
+life: every device sitting on the same local network connects back
+through one central point (the switch) whenever it wants to talk to any
+other device. CM never actually kicks the ball out of the team's own
+half — CM's entire job, start to finish, is just moving the ball between
 players who are already standing in the same area.
 
-**ST is the Router.** Notice ST is the only player positioned differently 
-— pushed forward, out of the safe local area, toward the wider pitch. 
-That's because ST's whole job is completely different from everyone 
-else's: ST is the only route the team has for ever reaching the other 
-side and scoring a goal. If ST didn't exist, the team could pass the ball 
-around among themselves literally forever and never once threaten the 
-opponent's goal. This is EXACTLY what a router does: it's the single 
-device that gives a local network any path at all to reach the internet. 
-No router means no internet access — period — no matter how well the 
+**ST is the Router.** Notice ST is the only player positioned differently
+— pushed forward, out of the safe local area, toward the wider pitch.
+That's because ST's whole job is completely different from everyone
+else's: ST is the only route the team has for ever reaching the other
+side and scoring a goal. If ST didn't exist, the team could pass the ball
+around among themselves literally forever and never once threaten the
+opponent's goal. This is EXACTLY what a router does: it's the single
+device that gives a local network any path at all to reach the internet.
+No router means no internet access — period — no matter how well the
 devices inside that LAN can talk to each other.
 
-**Team B's goal + all the open space beyond the team's own half is the 
-Internet.** It's shared ground, used by everyone, that you have to cross 
-to reach anything outside your own local area. Successfully getting the 
-ball all the way to score a goal is just like a request successfully 
-reaching a faraway server (like Google's) and getting a response back — 
+**Team B's goal + all the open space beyond the team's own half is the
+Internet.** It's shared ground, used by everyone, that you have to cross
+to reach anything outside your own local area. Successfully getting the
+ball all the way to score a goal is just like a request successfully
+reaching a faraway server (like Google's) and getting a response back —
 you needed the router (ST) to make that journey possible at all.
 
-**Team A's own half of the pitch is a LAN.** Everything happening inside 
-that space — LF, LM, RM, LCM, RCM, LCB, RCB, LB, RB, all passing through 
-CM — is a Local Area Network. Everyone there is close together, already 
-connected, and can pass the ball to each other instantly, with zero need 
+**Team A's own half of the pitch is a LAN.** Everything happening inside
+that space — LF, LM, RM, LCM, RCM, LCB, RCB, LB, RB, all passing through
+CM — is a Local Area Network. Everyone there is close together, already
+connected, and can pass the ball to each other instantly, with zero need
 to involve ST (the router) at all.
 
-**Each player's shirt number is their IP Address — and here's the 
-important part: it's actually ST (the router) who hands out those 
-numbers before the match even begins.** This connects directly back to 
-something I learned on Day 1: a router runs something called DHCP 
-(Dynamic Host Configuration Protocol), which is exactly what automatically 
-assigns every single device on a network its own unique IP address, the 
-same way a coach assigns every player their own unique shirt number before 
-kickoff. Because of this, when the ball is played and a number is called 
-out, that one specific player instantly knows "that's me, the ball's 
-coming to me" — without any confusion. If players had no numbers, CM (the 
-switch) genuinely wouldn't know exactly who to pass to, and the whole team 
+**Each player's shirt number is their IP Address — and here's the
+important part: it's actually ST (the router) who hands out those
+numbers before the match even begins.** This connects directly back to
+something I learned on Day 1: a router runs something called DHCP
+(Dynamic Host Configuration Protocol), which is exactly what automatically
+assigns every single device on a network its own unique IP address, the
+same way a coach assigns every player their own unique shirt number before
+kickoff. Because of this, when the ball is played and a number is called
+out, that one specific player instantly knows "that's me, the ball's
+coming to me" — without any confusion. If players had no numbers, CM (the
+switch) genuinely wouldn't know exactly who to pass to, and the whole team
 would be a confused mess of people bumping into each other.
 
-**Every single pass of the ball is a Packet.** Every time the ball 
-travels from one player to the next — from LCB to CM, from CM to ST — 
-that one individual pass is a packet: one single unit of information 
-moving from one specific point to the next, on its way toward a 
+**Every single pass of the ball is a Packet.** Every time the ball
+travels from one player to the next — from LCB to CM, from CM to ST —
+that one individual pass is a packet: one single unit of information
+moving from one specific point to the next, on its way toward a
 destination.
 
 ---
 
 ### Struggled with:
 
-**DNS servers and protocols** were briefly mentioned in class but I still 
-don't fully grasp them. While working through Question 3, I realized I 
-skipped an entire step — how does my laptop actually know WHICH exact 
-server holds google.com before it even sends the request there in the 
-first place? That's a real gap in my understanding that I still need to 
+**DNS servers and protocols** were briefly mentioned in class but I still
+don't fully grasp them. While working through Question 3, I realized I
+skipped an entire step — how does my laptop actually know WHICH exact
+server holds google.com before it even sends the request there in the
+first place? That's a real gap in my understanding that I still need to
 fill in properly.
 
-**The 24-port switch problem:** I kept thinking about this — what if we 
-had 25 computers in one room, but the switch available to us only has 24 
-ports? What would we actually do in that situation? My instinct was that 
-maybe we connect that switch to a second switch, so that all 25 computers 
-could still communicate with each other across both switches — but I 
-genuinely wasn't sure if that reasoning was correct, or exactly how it 
+**The 24-port switch problem:** I kept thinking about this — what if we
+had 25 computers in one room, but the switch available to us only has 24
+ports? What would we actually do in that situation? My instinct was that
+maybe we connect that switch to a second switch, so that all 25 computers
+could still communicate with each other across both switches — but I
+genuinely wasn't sure if that reasoning was correct, or exactly how it
 would work in practice. I need to confirm this properly tomorrow.
 
 ### Tomorrow:
 
-There's no class tomorrow, so I'm using the day to dig deeper into DNS 
-and properly understand how it fits into the full journey a request takes 
-before it ever reaches a website. I also want to confirm whether my 
-answer about connecting two switches together actually solves the 
-port-limit problem, and understand precisely how and why that works. I 
-also want to see if there are other analogies I can build for concepts 
-I'm still shaky on, the same way the football analogy helped make Q9 
+There's no class tomorrow, so I'm using the day to dig deeper into DNS
+and properly understand how it fits into the full journey a request takes
+before it ever reaches a website. I also want to confirm whether my
+answer about connecting two switches together actually solves the
+port-limit problem, and understand precisely how and why that works. I
+also want to see if there are other analogies I can build for concepts
+I'm still shaky on, the same way the football analogy helped make Q9
 click for me.
-
-
 
 ## Day 3 - August 5, 2026 (Self-Study Day, No Class)
 
-### Focus: Understanding DNS deeply, closing the gap I flagged on Day 1 
+### Focus: Understanding DNS deeply, closing the gap I flagged on Day 1
+
 ### and Day 2
 
-Today there was no class, so I used the full day to properly understand 
-DNS. I watched extra videos, took detailed notes, wrote out 6 
-self-generated questions to test my understanding, and then kept pushing 
-myself with follow-up "but why" questions until every piece of the chain 
+Today there was no class, so I used the full day to properly understand
+DNS. I watched extra videos, took detailed notes, wrote out 6
+self-generated questions to test my understanding, and then kept pushing
+myself with follow-up "but why" questions until every piece of the chain
 actually made sense — not just memorized.
 
 ---
@@ -615,38 +599,38 @@ actually made sense — not just memorized.
 
 **What is DNS, in simple terms:**
 
-DNS (Domain Name System) is like a translator that translates requests 
-from humans — which come in names — into numerical values called IP 
+DNS (Domain Name System) is like a translator that translates requests
+from humans — which come in names — into numerical values called IP
 addresses, so the computer can understand them.
 
-A domain is any name, or string, that we type into a web browser. It 
+A domain is any name, or string, that we type into a web browser. It
 could be google.com, or anything similar.
 
-DNS acts like a phonebook. In this phonebook, we search for a name, and 
+DNS acts like a phonebook. In this phonebook, we search for a name, and
 it matches that name to a corresponding number (an IP address).
 
 **Why computers need this translation at all:**
 
-Computers are machines, and just like humans — when you speak to a human 
-in a language he/she doesn't understand, you don't get feedback. 
-Machines/computers' language is numbers. So unless you already know the 
-exact IP address of google.com, the computer can't understand what you 
-want. That's exactly where DNS comes in — it bridges the gap between 
+Computers are machines, and just like humans — when you speak to a human
+in a language he/she doesn't understand, you don't get feedback.
+Machines/computers' language is numbers. So unless you already know the
+exact IP address of google.com, the computer can't understand what you
+want. That's exactly where DNS comes in — it bridges the gap between
 human language (names) and computer language (numbers).
 
 **The DNS Resolver's cache:**
 
-A DNS resolver cache is a temporary memory that saves data temporarily. 
-Let's say you type www.[something] into your browser for the first time 
-— it goes through your DNS and its protocols, checks its cache, and all 
-that. Since it isn't in its cache the first time, it's able to receive 
-the correct IP address with help from its "friends" — the Root Server and 
-the TLD server. Once it gets the answer, it saves that result. So the 
-next time you (or anyone using that same resolver) tries to access that 
-same webpage, rather than going through all that process again to figure 
-out what IP address is linked to that URL, it simply fetches it 
-immediately from its own cache. If there was no caching at all, every 
-single request — even to a site visited seconds ago — would have to go 
+A DNS resolver cache is a temporary memory that saves data temporarily.
+Let's say you type www.[something] into your browser for the first time
+— it goes through your DNS and its protocols, checks its cache, and all
+that. Since it isn't in its cache the first time, it's able to receive
+the correct IP address with help from its "friends" — the Root Server and
+the TLD server. Once it gets the answer, it saves that result. So the
+next time you (or anyone using that same resolver) tries to access that
+same webpage, rather than going through all that process again to figure
+out what IP address is linked to that URL, it simply fetches it
+immediately from its own cache. If there was no caching at all, every
+single request — even to a site visited seconds ago — would have to go
 through the full lookup chain again, making everything noticeably slower.
 
 **The full DNS lookup chain, step by step, in order:**
@@ -655,135 +639,136 @@ through the full lookup chain again, making everything noticeably slower.
 1. You type google.com into your browser
 
 2. Your DNS Resolver checks its OWN cache first
-   → If it's already cached (visited recently): 
+   → If it's already cached (visited recently):
      returns the IP immediately, journey ends here
 
 3. If NOT cached, the Resolver asks a Root Server
-   → The Root Server's job is to look at the domain's 
-     TLD (the extension — .com, .ng, .org, etc.) and 
-     point the resolver toward the correct TLD server 
-     for that specific extension. The Root Server does 
-     NOT know the final IP address itself — it just 
+   → The Root Server's job is to look at the domain's
+     TLD (the extension — .com, .ng, .org, etc.) and
+     point the resolver toward the correct TLD server
+     for that specific extension. The Root Server does
+     NOT know the final IP address itself — it just
      knows which TLD server to send you to.
 
-4. The Resolver then asks the correct TLD Server 
-   (in this case, the .com TLD server, since google.com 
+4. The Resolver then asks the correct TLD Server
+   (in this case, the .com TLD server, since google.com
    ends in .com)
-   → The TLD server holds a directory/record mapping 
-     domain names to their Authoritative servers — but 
-     ONLY for domains under its own extension. The .com 
-     TLD server only knows about .com domains. It does 
-     NOT know anything about .ng, .org, or any other 
-     extension — each extension has its own completely 
+   → The TLD server holds a directory/record mapping
+     domain names to their Authoritative servers — but
+     ONLY for domains under its own extension. The .com
+     TLD server only knows about .com domains. It does
+     NOT know anything about .ng, .org, or any other
+     extension — each extension has its own completely
      separate TLD server.
-   → It doesn't know the exact IP either, but it knows 
-     WHICH Authoritative server is responsible for 
-     google.com specifically, and points the resolver 
+   → It doesn't know the exact IP either, but it knows
+     WHICH Authoritative server is responsible for
+     google.com specifically, and points the resolver
      there.
 
-5. The Resolver then asks Google's own Authoritative 
+5. The Resolver then asks Google's own Authoritative
    DNS Server
-   → This is the server that Google itself owns and 
-     controls directly. It's the actual original source 
-     of truth for google.com's IP address. It replies: 
+   → This is the server that Google itself owns and
+     controls directly. It's the actual original source
+     of truth for google.com's IP address. It replies:
      "Here's the real IP address: 142.250.x.x"
-   → IMPORTANT: this Authoritative server is NOT a 
-     shared/universal server. Every single domain on the 
-     internet has its own Authoritative server (or set of 
-     them), owned and managed by whoever owns that 
-     specific domain. Google runs Google's own. A 
-     different company runs their own, completely 
+   → IMPORTANT: this Authoritative server is NOT a
+     shared/universal server. Every single domain on the
+     internet has its own Authoritative server (or set of
+     them), owned and managed by whoever owns that
+     specific domain. Google runs Google's own. A
+     different company runs their own, completely
      separately.
 
 6. The Resolver sends that IP address back to your browser
 
-7. Your browser now connects DIRECTLY to that IP address, 
+7. Your browser now connects DIRECTLY to that IP address,
    and the website loads
 
-8. The Resolver SAVES this result in its cache, so next 
+8. The Resolver SAVES this result in its cache, so next
    time it's needed, it skips straight to step 2
 ```
 
 **Why the resolver can't just skip straight to the Authoritative server:**
 
-I initially wondered — since Root and TLD don't actually know the final 
-IP address, why doesn't the resolver just go straight to Google's 
-Authoritative server? The answer: the resolver genuinely doesn't know 
-WHERE Google's Authoritative server even is, until it's told. It's not 
-choosing to take the long way — each step in the chain is literally how 
-it DISCOVERS where to go next. There's no single master list anywhere 
-containing every domain's exact server address — Root and TLD exist 
+I initially wondered — since Root and TLD don't actually know the final
+IP address, why doesn't the resolver just go straight to Google's
+Authoritative server? The answer: the resolver genuinely doesn't know
+WHERE Google's Authoritative server even is, until it's told. It's not
+choosing to take the long way — each step in the chain is literally how
+it DISCOVERS where to go next. There's no single master list anywhere
+containing every domain's exact server address — Root and TLD exist
 specifically to make that discovery process possible.
 
-I compared it to trying to find someone's exact house in a huge city when 
-you only know their name, not their address — you have to ask a general 
-information desk first (Root), which points you to the right district 
-(TLD), which finally points you to the exact street (Authoritative 
+I compared it to trying to find someone's exact house in a huge city when
+you only know their name, not their address — you have to ask a general
+information desk first (Root), which points you to the right district
+(TLD), which finally points you to the exact street (Authoritative
 server).
 
-**Is Google's Authoritative server the only one that knows google.com's 
+**Is Google's Authoritative server the only one that knows google.com's
 IP?**
 
-Yes — Google's Authoritative server is the actual OWNER of that 
-information, because Google itself runs and controls it. Every other 
-resolver in the world (your ISP's resolver, Google's public 8.8.8.8, 
-Cloudflare's 1.1.1.1) only ever learns the answer by asking that same 
-authoritative source, or by having a cached copy of a previous answer 
-from it. If Google ever changed their server's IP, every resolver 
-worldwide would eventually need to re-ask the authoritative server to get 
-the updated answer — this is exactly why cached answers expire after a 
-set time (called a TTL — Time To Live) instead of staying cached forever, 
-so resolvers periodically re-check with the real source in case anything 
+Yes — Google's Authoritative server is the actual OWNER of that
+information, because Google itself runs and controls it. Every other
+resolver in the world (your ISP's resolver, Google's public 8.8.8.8,
+Cloudflare's 1.1.1.1) only ever learns the answer by asking that same
+authoritative source, or by having a cached copy of a previous answer
+from it. If Google ever changed their server's IP, every resolver
+worldwide would eventually need to re-ask the authoritative server to get
+the updated answer — this is exactly why cached answers expire after a
+set time (called a TTL — Time To Live) instead of staying cached forever,
+so resolvers periodically re-check with the real source in case anything
 changed.
 
 **Important correction I caught myself, and had confirmed:**
 
-I initially said "the TLD is .com" — but this isn't fully accurate. TLD 
-(Top Level Domain) is actually a CATEGORY, not one single thing. ".com" 
-is just ONE example of a TLD — one member of that category. Other TLDs 
-include .ng, .org, .net, .io, .gov, .edu, .co, and thousands more. Each 
-one has its own completely separate TLD server, holding records only for 
+I initially said "the TLD is .com" — but this isn't fully accurate. TLD
+(Top Level Domain) is actually a CATEGORY, not one single thing. ".com"
+is just ONE example of a TLD — one member of that category. Other TLDs
+include .ng, .org, .net, .io, .gov, .edu, .co, and thousands more. Each
+one has its own completely separate TLD server, holding records only for
 domains under that specific extension.
 
 **Corrected way to say it:**
+
 - "TLD" = the general concept/category (Top Level Domain)
 - ".com" = one specific TLD (with its own dedicated server)
 - ".ng" = a different, separate TLD (with its own separate server)
 
-So the accurate phrasing is: **".com is a TLD"** — not "the TLD is .com." 
-The Root Server's real job is to look at WHICH TLD a domain uses, and 
+So the accurate phrasing is: **".com is a TLD"** — not "the TLD is .com."
+The Root Server's real job is to look at WHICH TLD a domain uses, and
 direct the resolver to that specific TLD server.
 
 ---
 
 ### PART 2: MY 6 SELF-QUIZ QUESTIONS AND ANSWERS
 
-**Q1: What is DNS, in your own words — what problem does it actually 
+**Q1: What is DNS, in your own words — what problem does it actually
 solve?**
 
-DNS is like a middleman between a buyer and a seller. Imagine a buyer and 
-seller live in an environment where the buyer can only talk directly to 
-the middleman, and the middleman relays messages to the seller. If the 
-buyer wants something, the buyer tries to explain in a way the seller 
-doesn't directly understand. But the middleman understands what the buyer 
-wants, and passes that request across to the seller in a language the 
-seller understands. So when we type in a website name like 
-www.netflix.com, we're using our own human "language" — the computer 
-doesn't understand this directly. What we typed has to be translated into 
-what the computer can understand and use — its own language, which is 
-numbers. That computer won't be able to understand what you want without 
+DNS is like a middleman between a buyer and a seller. Imagine a buyer and
+seller live in an environment where the buyer can only talk directly to
+the middleman, and the middleman relays messages to the seller. If the
+buyer wants something, the buyer tries to explain in a way the seller
+doesn't directly understand. But the middleman understands what the buyer
+wants, and passes that request across to the seller in a language the
+seller understands. So when we type in a website name like
+www.netflix.com, we're using our own human "language" — the computer
+doesn't understand this directly. What we typed has to be translated into
+what the computer can understand and use — its own language, which is
+numbers. That computer won't be able to understand what you want without
 a DNS.
 
-**Q2: Why can't computers just use domain names (like google.com) 
+**Q2: Why can't computers just use domain names (like google.com)
 directly, without needing IP addresses at all?**
 
-Because computers are machines, and just like humans — when you speak to 
-a human in a language he/she doesn't understand, you don't get feedback. 
-Machines/computers' language is numbers. So unless you already know the 
-IP address of google.com, the computer can't understand what you want — 
+Because computers are machines, and just like humans — when you speak to
+a human in a language he/she doesn't understand, you don't get feedback.
+Machines/computers' language is numbers. So unless you already know the
+IP address of google.com, the computer can't understand what you want —
 but that's where DNS comes in.
 
-**Q3: Walk me through the full DNS lookup chain, in order, when there's 
+**Q3: Walk me through the full DNS lookup chain, in order, when there's
 no cached answer available.**
 
 ```
@@ -791,7 +776,7 @@ DNS Resolver checks cache
     ↓ (not found)
 Root Server → points to correct TLD server (based on extension)
     ↓
-TLD Server (.com, .ng, .org, etc.) → points to the correct 
+TLD Server (.com, .ng, .org, etc.) → points to the correct
     Authoritative server for that specific domain
     ↓
 Authoritative Server → gives the REAL final IP address
@@ -801,169 +786,170 @@ Resolver saves it in cache, sends it back to browser
 Browser connects directly to that IP → website loads
 ```
 
-**Q4: What is a DNS resolver's cache, and why does it matter? What would 
+**Q4: What is a DNS resolver's cache, and why does it matter? What would
 happen if DNS had no caching at all?**
 
-A DNS resolver cache is a temporary memory that saves data temporarily. 
-The first time you visit a website, the resolver has to go through the 
-full chain (Root → TLD → Authoritative) since it isn't in its cache yet. 
-But once it gets the answer, it saves it. Next time you access that same 
-webpage, rather than going through that whole process again, it simply 
-fetches the answer immediately from its own cache. If it has no caching 
-at all, its response is simply slower — every request repeats the full 
+A DNS resolver cache is a temporary memory that saves data temporarily.
+The first time you visit a website, the resolver has to go through the
+full chain (Root → TLD → Authoritative) since it isn't in its cache yet.
+But once it gets the answer, it saves it. Next time you access that same
+webpage, rather than going through that whole process again, it simply
+fetches the answer immediately from its own cache. If it has no caching
+at all, its response is simply slower — every request repeats the full
 chain, even for sites visited seconds earlier.
 
-**Q5: What is a Root Server, and what's its actual job in the chain — 
+**Q5: What is a Root Server, and what's its actual job in the chain —
 does it know the final IP address itself, or does it do something else?**
 
-Its job in the chain is to say: "Hey bro, this is what you gave me. 
-Inside what you gave me, I only know this much, but I can direct you to 
-where you can get your remaining answer." That's its work. And no, it 
-doesn't know the final IP address — it just points the resolver in the 
-right direction, toward the correct TLD server, based on the domain's 
+Its job in the chain is to say: "Hey bro, this is what you gave me.
+Inside what you gave me, I only know this much, but I can direct you to
+where you can get your remaining answer." That's its work. And no, it
+doesn't know the final IP address — it just points the resolver in the
+right direction, toward the correct TLD server, based on the domain's
 extension.
 
 **Q6: What is a TLD, and can you give a few real examples beyond .com?**
 
-TLD stands for Top Level Domain — it's a category, not one single thing. 
-".com" is just one example/type of TLD. Other examples include .ng 
-(Nigeria), .org, .net, .io, and many more — each with its own separate 
+TLD stands for Top Level Domain — it's a category, not one single thing.
+".com" is just one example/type of TLD. Other examples include .ng
+(Nigeria), .org, .net, .io, and many more — each with its own separate
 dedicated server.
 
 ---
 
 ### Struggled with:
 
-At first, the DNS chain felt abstract — I understood the definitions but 
-not WHY it worked the specific way it does. Breaking it into a 
-step-by-step numbered list made it click. I also initially misunderstood 
-a few specific relationships, which I corrected through follow-up 
+At first, the DNS chain felt abstract — I understood the definitions but
+not WHY it worked the specific way it does. Breaking it into a
+step-by-step numbered list made it click. I also initially misunderstood
+a few specific relationships, which I corrected through follow-up
 questions:
 
-1. I assumed the resolver could just skip straight to the Authoritative 
-   server since Root/TLD don't know the final answer anyway — but 
-   realized the resolver genuinely doesn't know WHERE that server even 
+1. I assumed the resolver could just skip straight to the Authoritative
+   server since Root/TLD don't know the final answer anyway — but
+   realized the resolver genuinely doesn't know WHERE that server even
    is until Root and TLD point the way, step by step.
 
-2. I assumed maybe only one "authoritative resolver" existed in general 
-   — but learned every single domain has its OWN Authoritative server, 
+2. I assumed maybe only one "authoritative resolver" existed in general
+   — but learned every single domain has its OWN Authoritative server,
    owned and controlled by whoever owns that domain.
 
-3. I mistakenly said "the TLD is .com" — but corrected this to 
-   understand TLD is a whole CATEGORY, and .com is just one specific 
-   example within that category, alongside .ng, .org, .io, and many 
+3. I mistakenly said "the TLD is .com" — but corrected this to
+   understand TLD is a whole CATEGORY, and .com is just one specific
+   example within that category, alongside .ng, .org, .io, and many
    others, each with its own separate server.
 
 ### Tomorrow:
 
-Back to regular class — Day 4 for the bootcamp, but the 3rd real class 
-day. Not sure yet what's coming — possibly HTML, possibly more networking 
-fundamentals. Will find out and adapt the evening study block around 
+Back to regular class — Day 4 for the bootcamp, but the 3rd real class
+day. Not sure yet what's coming — possibly HTML, possibly more networking
+fundamentals. Will find out and adapt the evening study block around
 whatever's actually covered, same as always.
-```
+
+````
 
 
 
  ## Day 4 - August 6, 2026
 
 ### Topics covered in class:
-Introduction to programming logic using Scratch — variables, loops, 
+Introduction to programming logic using Scratch — variables, loops,
 conditionals, and building a spiral animation
 
 ---
 
 ### What I learned:
 
-Today was my first real introduction to programming logic, using Scratch's 
-visual block system. I  built a program that makes a sprite draw a spiral 
-outward from the center, then unwind itself back to the exact center 
+Today was my first real introduction to programming logic, using Scratch's
+visual block system. I  built a program that makes a sprite draw a spiral
+outward from the center, then unwind itself back to the exact center
 point.
 
 **Block by block breakdown:**
 
-**"when 🚩 clicked"** — the starting point. As soon as the green flag is 
+**"when 🚩 clicked"** — the starting point. As soon as the green flag is
 clicked, everything below it starts running.
 
-**"set Radius to 0"** — Radius is a variable, like a labeled box that 
-holds one number. This line puts 0 inside that box, resetting it fresh 
+**"set Radius to 0"** — Radius is a variable, like a labeled box that
+holds one number. This line puts 0 inside that box, resetting it fresh
 every time the flag is clicked.
 
-**"go to x: 0 y: 0"** — every spot on the Scratch screen has a coordinate 
-address made of two numbers: x (left/right) and y (up/down). x:0, y:0 is 
+**"go to x: 0 y: 0"** — every spot on the Scratch screen has a coordinate
+address made of two numbers: x (left/right) and y (up/down). x:0, y:0 is
 the exact center of the screen. This teleports the sprite there instantly.
 
-**"point in direction 90"** — direction 90 in Scratch means "facing 
-right." This makes sure the sprite faces the same way every time the 
+**"point in direction 90"** — direction 90 in Scratch means "facing
+right." This makes sure the sprite faces the same way every time the
 program starts, so the spiral looks identical each run.
 
-**First loop — "repeat until Radius > 40":** this is a loop — "keep doing 
-whatever's inside me, over and over" — but it needs a stopping condition. 
-"Radius > 40" is a question: "is the number inside Radius bigger than 
-40?" As long as the answer is no, the loop keeps repeating. Once Radius 
+**First loop — "repeat until Radius > 40":** this is a loop — "keep doing
+whatever's inside me, over and over" — but it needs a stopping condition.
+"Radius > 40" is a question: "is the number inside Radius bigger than
+40?" As long as the answer is no, the loop keeps repeating. Once Radius
 finally climbs above 40, the loop stops.
 
 Inside that loop, three things happen every single repeat:
 - **"turn ↺ 15 degrees"** — rotates the sprite 15 degrees counter-clockwise
-- **"move Radius steps"** — moves forward, but not a fixed distance — it 
+- **"move Radius steps"** — moves forward, but not a fixed distance — it
   moves however big the number currently inside Radius is
-- **"change Radius by 0.2"** — takes whatever's in Radius and adds 0.2 
+- **"change Radius by 0.2"** — takes whatever's in Radius and adds 0.2
   to it
 
-**Why this makes a spiral:** every time through the loop, the sprite 
-turns a little, then moves forward — but each time it moves a little 
-farther than before, since Radius keeps growing by 0.2 each loop. 
-Turning + walking a growing distance, over and over, traces bigger and 
+**Why this makes a spiral:** every time through the loop, the sprite
+turns a little, then moves forward — but each time it moves a little
+farther than before, since Radius keeps growing by 0.2 each loop.
+Turning + walking a growing distance, over and over, traces bigger and
 bigger circles, which looks like a spiral.
 
-**Second loop — "repeat until not (Radius > 0)":** trickier phrasing. 
-"Radius > 0" asks "is Radius bigger than 0?" The word "not" flips the 
-answer, so "not (Radius > 0)" really means "Radius is 0 or less." So this 
+**Second loop — "repeat until not (Radius > 0)":** trickier phrasing.
+"Radius > 0" asks "is Radius bigger than 0?" The word "not" flips the
+answer, so "not (Radius > 0)" really means "Radius is 0 or less." So this
 loop means: keep repeating until Radius has shrunk down to 0 or below.
 
 Inside it:
-- **"change Radius by -0.2"** — same idea as before, but subtracting 0.2 
+- **"change Radius by -0.2"** — same idea as before, but subtracting 0.2
   each time, so Radius shrinks a little every loop
-- **"move (0 - Radius) steps"** — "0 - Radius" is simple subtraction: 
-  zero minus whatever's in Radius. Since Radius is positive, this always 
-  comes out negative. In Scratch, moving a negative number of steps means 
+- **"move (0 - Radius) steps"** — "0 - Radius" is simple subtraction:
+  zero minus whatever's in Radius. Since Radius is positive, this always
+  comes out negative. In Scratch, moving a negative number of steps means
   moving BACKWARD instead of forward. This undoes the walking from before.
-- **"turn ↻ 15 degrees"** — turns 15 degrees the OTHER way (clockwise 
+- **"turn ↻ 15 degrees"** — turns 15 degrees the OTHER way (clockwise
   this time). This undoes the earlier turn.
 
-**Why this unwinds the spiral perfectly:** each loop here does the exact 
-opposite of what the first loop did — shrink instead of grow, walk 
-backward instead of forward, turn the opposite way. Doing all the 
-opposite moves, in the same order, retraces the exact same path back to 
+**Why this unwinds the spiral perfectly:** each loop here does the exact
+opposite of what the first loop did — shrink instead of grow, walk
+backward instead of forward, turn the opposite way. Doing all the
+opposite moves, in the same order, retraces the exact same path back to
 the center.
 
-**Final safety net — "go to x: 0 y: 0" and "point in direction 90" 
-(repeated):** snaps the sprite exactly back to center and facing the same 
-way, in case tiny number rounding left it slightly off after all those 
+**Final safety net — "go to x: 0 y: 0" and "point in direction 90"
+(repeated):** snaps the sprite exactly back to center and facing the same
+way, in case tiny number rounding left it slightly off after all those
 loops.
 
 ---
 
 ### Struggled with:
 
-I had real difficulty figuring out how to make the spiral pull back and 
-retrace the SAME line backward, rather than just spiraling off somewhere 
-random after it finished growing. I understood how the outward spiral 
-worked, but getting it to unwind cleanly along the exact same path took 
+I had real difficulty figuring out how to make the spiral pull back and
+retrace the SAME line backward, rather than just spiraling off somewhere
+random after it finished growing. I understood how the outward spiral
+worked, but getting it to unwind cleanly along the exact same path took
 extra research and trial.
 
-What I eventually figured out: the key wasn't just "reverse the 
-direction" — it was making sure EVERY single action from the growing 
-phase had an exact opposite in the shrinking phase, done in the same 
-order. Grow → shrink (change Radius by -0.2 instead of +0.2). Move 
-forward → move backward (using 0 - Radius, which flips the movement 
-negative). Turn one way → turn the exact opposite way (clockwise instead 
-of counter-clockwise). Once I made sure each of the three actions had its 
-precise mirror opposite, the sprite retraced its exact path back to 
+What I eventually figured out: the key wasn't just "reverse the
+direction" — it was making sure EVERY single action from the growing
+phase had an exact opposite in the shrinking phase, done in the same
+order. Grow → shrink (change Radius by -0.2 instead of +0.2). Move
+forward → move backward (using 0 - Radius, which flips the movement
+negative). Turn one way → turn the exact opposite way (clockwise instead
+of counter-clockwise). Once I made sure each of the three actions had its
+precise mirror opposite, the sprite retraced its exact path back to
 center instead of drifting off somewhere new.
 
-This was a genuinely good lesson beyond just Scratch — it's the first 
-time I really felt how a program is just a sequence of state changes, and 
-that "undoing" something isn't magic — it's deliberately reversing each 
+This was a genuinely good lesson beyond just Scratch — it's the first
+time I really felt how a program is just a sequence of state changes, and
+that "undoing" something isn't magic — it's deliberately reversing each
 individual step that built it up in the first place.
 
 ### Connecting this to real code (for when we start HTML/CSS/JS):
@@ -975,8 +961,8 @@ individual step that built it up in the first place.
 
 ### Tomorrow:
 
-Not sure yet what's coming next in class. Will bring today's understanding 
-of variables, loops, and conditionals forward, since these are foundational 
+Not sure yet what's coming next in class. Will bring today's understanding
+of variables, loops, and conditionals forward, since these are foundational
 concepts that'll show up again once we move into actual code.
 
 
@@ -984,7 +970,7 @@ concepts that'll show up again once we move into actual code.
 ## Day 5 - August 9, 2026
 
 ### Topics covered in class:
-HTML fundamentals — why HTML isn't a programming language, `<div>`, 
+HTML fundamentals — why HTML isn't a programming language, `<div>`,
 classes, and IDs
 
 ---
@@ -993,9 +979,9 @@ classes, and IDs
 
 ### 1. What is HTML?
 
-HTML stands for **HyperText Markup Language**. It is the core language for 
-building websites. It structures and organizes content, allowing web 
-browsers to interpret and display it visually. It acts as the foundation 
+HTML stands for **HyperText Markup Language**. It is the core language for
+building websites. It structures and organizes content, allowing web
+browsers to interpret and display it visually. It acts as the foundation
 on which CSS and JavaScript are built.
 
 **What does HTML actually do?**
@@ -1014,27 +1000,27 @@ It allows us to specify:
 
 **HTML is not a programming language — it is a markup language.**
 
-HTML isn't considered a programming language because it doesn't tell the 
-computer how to perform logic or make decisions. It tells the browser 
+HTML isn't considered a programming language because it doesn't tell the
+computer how to perform logic or make decisions. It tells the browser
 what things are and how they are structured.
 
-It doesn't tell the computer "hey, do this, carry out this action, and 
-all that." Instead, it tells the browser "here's how you will display 
+It doesn't tell the computer "hey, do this, carry out this action, and
+all that." Instead, it tells the browser "here's how you will display
 this, here's this, here's that, lay this out like this and all that."
 
 **Going deeper — why exactly this matters technically:**
 
-HTML only helps the browser display text, images, links, and so on from 
-a website. It doesn't give the computer, nor tell the computer, to carry 
-out any logical task or assignment — hence it is not a programming 
+HTML only helps the browser display text, images, links, and so on from
+a website. It doesn't give the computer, nor tell the computer, to carry
+out any logical task or assignment — hence it is not a programming
 language.
 
-It simply tells a browser: "hey bro, this certain code is an image, this 
-is a link, it should appear like this, have this colour, and structure." 
-But it doesn't tell the computer "here, do this, here, think of this, 
-where do you put this, and all that." It's just written code that the 
-browser simply converts into visuals, so users can see and understand 
-those codes — it doesn't tell the computer to carry out any logical 
+It simply tells a browser: "hey bro, this certain code is an image, this
+is a link, it should appear like this, have this colour, and structure."
+But it doesn't tell the computer "here, do this, here, think of this,
+where do you put this, and all that." It's just written code that the
+browser simply converts into visuals, so users can see and understand
+those codes — it doesn't tell the computer to carry out any logical
 action.
 
 **Example:**
@@ -1042,57 +1028,61 @@ action.
 <h1>Hello World</h1>
 <p>Welcome to my website.</p>
 <button>Login</button>
-```
+````
+
 HTML is telling the browser:
+
 - `<h1>` → this is a heading
 - `<p>` → this is a paragraph
 - `<button>` → this is a button
 
 It is describing the elements and their structure — nothing more.
 
-A programming language, by contrast, can perform actual logic. For 
+A programming language, by contrast, can perform actual logic. For
 example, JavaScript can make a decision:
+
 ```javascript
 let age = 20;
 
 if (age >= 18) {
-    console.log("Adult");
+  console.log("Adult");
 } else {
-    console.log("Minor");
+  console.log("Minor");
 }
 ```
-Here, JavaScript is actually processing information and making a 
+
+Here, JavaScript is actually processing information and making a
 decision — something HTML fundamentally cannot do.
 
 ---
 
 ### 3. My House Analogy (How I Understand HTML, CSS, and JavaScript)
 
-I understand the relationship between HTML, CSS, and JavaScript using a 
+I understand the relationship between HTML, CSS, and JavaScript using a
 house analogy:
 
 **HTML = the structure of the house**
 
-HTML is the structure of the house — the doors, windows, roofing, and 
-everything, even the light switch. All of that is HTML. HTML defines the 
-different parts of the webpage, just like a house has rooms, doors, 
+HTML is the structure of the house — the doors, windows, roofing, and
+everything, even the light switch. All of that is HTML. HTML defines the
+different parts of the webpage, just like a house has rooms, doors,
 windows, and walls.
 
 **CSS = the appearance of the house**
 
-CSS is the painting — the colour of your tiles, colour of your doors and 
-windows, sizes of them, colour of your roof, even colour of your switch. 
-CSS controls things such as colours, size, spacing, position, fonts, and 
+CSS is the painting — the colour of your tiles, colour of your doors and
+windows, sizes of them, colour of your roof, even colour of your switch.
+CSS controls things such as colours, size, spacing, position, fonts, and
 overall appearance.
 
 **JavaScript = the behavior/functionality of the house**
 
-JavaScript is like the command that gives functionality to everything in 
-your house. When you open your door — where does it lead to? That's 
-JavaScript. When you turn on your light switch — what happens? That's 
-JavaScript. To enter your kitchen, which door do you pass through — those 
-functions lead you to exactly where you want to go. JavaScript gives 
-functionality to our code — without it, our codes/webpages are just 
+JavaScript is like the command that gives functionality to everything in
+your house. When you open your door — where does it lead to? That's
+JavaScript. When you turn on your light switch — what happens? That's
+JavaScript. To enter your kitchen, which door do you pass through — those
+functions lead you to exactly where you want to go. JavaScript gives
+functionality to our code — without it, our codes/webpages are just
 written images and text with no functionality.
 
 **My simple way of remembering it:**
@@ -1101,47 +1091,49 @@ HTML → Structure
 CSS → Appearance
 JavaScript → Behavior
 
-
 ---
 
 ### 4. What is `<div>`?
 
-`<div>` stands for **division**. A `<div>` is a general-purpose container 
+`<div>` stands for **division**. A `<div>` is a general-purpose container
 used to group related HTML elements together.
 
 **Example:**
+
 ```html
 <div>
-    <h1>My Website</h1>
-    <p>Welcome to my website.</p>
-    <button>Login</button>
+  <h1>My Website</h1>
+  <p>Welcome to my website.</p>
+  <button>Login</button>
 </div>
 ```
-The `<div>` isn't saying that the content is a heading, paragraph, or 
-button. Instead, it's basically saying: "these elements belong together 
+
+The `<div>` isn't saying that the content is a heading, paragraph, or
+button. Instead, it's basically saying: "these elements belong together
 as one group."
 
 **Why do we use `<div>`?**
 
-We use div to group codes. It acts as a container to separate codes from 
-other codes. It tells the browser: "hey, these codes aren't together with 
-these codes, so do justice when you are displaying them to the users or 
-anyone viewing them." Div tells the browser: "hey bro, these codes are 
-separate." It puts a whole code in a container, and the viewer/user or 
-anyone viewing that webpage can easily know and understand: "hey, these 
+We use div to group codes. It acts as a container to separate codes from
+other codes. It tells the browser: "hey, these codes aren't together with
+these codes, so do justice when you are displaying them to the users or
+anyone viewing them." Div tells the browser: "hey bro, these codes are
+separate." It puts a whole code in a container, and the viewer/user or
+anyone viewing that webpage can easily know and understand: "hey, these
 are two different parts and doesn't go together." That's the work of div.
 
 **Example (from class practice):**
+
 ```html
 Code 1:
 <div>
-    <header>James Bound</header>
-    <p>...</p>
-    <ul>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-    </ul>
+  <header>James Bound</header>
+  <p>...</p>
+  <ul>
+    <li>...</li>
+    <li>...</li>
+    <li>...</li>
+  </ul>
 </div>
 
 Code 2:
@@ -1149,103 +1141,118 @@ Code 2:
 <p>...</p>
 <p>...</p>
 <ol>
-    <li>...</li>
-    <li>...</li>
+  <li>...</li>
+  <li>...</li>
 </ol>
 ```
-Two separate `<div>` blocks tell the browser these are two distinct 
+
+Two separate `<div>` blocks tell the browser these are two distinct
 groups of content, not one continuous block.
 
 It can also be given a class so that CSS can style the group:
+
 ```html
 <div class="login-box">
-    <h1>Login</h1>
-    <input type="text">
-    <button>Login</button>
+  <h1>Login</h1>
+  <input type="text" />
+  <button>Login</button>
 </div>
 ```
+
 ```css
 .login-box {
-    width: 300px;
-    padding: 20px;
-    background-color: lightgray;
+  width: 300px;
+  padding: 20px;
+  background-color: lightgray;
 }
 ```
+
 The class allows CSS to target that particular group.
 
 ---
 
 ### 5. What is a Class?
 
-A class is a reusable name or category that can be assigned to HTML 
+A class is a reusable name or category that can be assigned to HTML
 elements.
 
 **Example:**
+
 ```html
 <p class="important">This is important.</p>
 <p class="important">This is also important.</p>
 <p>This is normal.</p>
 ```
-The first two paragraphs share the class `important`. CSS can then target 
+
+The first two paragraphs share the class `important`. CSS can then target
 that class:
+
 ```css
 .important {
-    color: red;
+  color: red;
 }
 ```
-The two paragraphs with the `important` class will receive that styling. 
-The `.` before `important` tells CSS that `important` is a class 
+
+The two paragraphs with the `important` class will receive that styling.
+The `.` before `important` tells CSS that `important` is a class
 selector.
 
 **My own understanding of class:**
 
-To my own understanding, class is used to say: "hey, I need everything in 
-this block to have the same styling." Yes, class can still be used for 
-individual styling, but it's mostly for styling a group of codes. Let's 
-say every list, no matter how long the code is — any list will have a 
-specific CSS. One can use that class name countless times for each list 
-in the code. All you have to do is name it in the HTML file, and in CSS, 
-just call it and style it — automatically, all the `<li>` with that class 
+To my own understanding, class is used to say: "hey, I need everything in
+this block to have the same styling." Yes, class can still be used for
+individual styling, but it's mostly for styling a group of codes. Let's
+say every list, no matter how long the code is — any list will have a
+specific CSS. One can use that class name countless times for each list
+in the code. All you have to do is name it in the HTML file, and in CSS,
+just call it and style it — automatically, all the `<li>` with that class
 name will have the same CSS.
 
 ---
 
 ### 6. Why Are Classes Useful?
 
-Classes are especially useful when multiple elements need the same 
+Classes are especially useful when multiple elements need the same
 styling.
 
 **Example:**
+
 ```html
 <button class="btn">Login</button>
 <button class="btn">Sign Up</button>
 <button class="btn">Contact</button>
 ```
+
 All three buttons share the class `btn`, so I can write the CSS once:
+
 ```css
 .btn {
-    padding: 10px 20px;
-    border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 5px;
 }
 ```
-Instead of creating separate CSS for every button, the same class can be 
-reused — once, several times, or hundreds of times, depending on what's 
+
+Instead of creating separate CSS for every button, the same class can be
+reused — once, several times, or hundreds of times, depending on what's
 needed.
 
 **Example with list items:**
+
 ```html
 <li class="menu-item">Home</li>
 <li class="menu-item">About</li>
 <li class="menu-item">Contact</li>
 <li class="menu-item">Services</li>
 ```
+
 ```css
 .menu-item {
-    color: blue;
-    font-size: 20px;
+  color: blue;
+  font-size: 20px;
 }
 ```
-Automatically, every `<li>` with the `menu-item` class gets the same CSS 
+
+Automatically, every `<li>` with the `menu-item` class gets the same CSS
 — I don't have to create a separate CSS rule for every list item.
 
 ---
@@ -1255,27 +1262,31 @@ Automatically, every `<li>` with the `menu-item` class gets the same CSS
 An ID gives an HTML element a unique identity.
 
 **Example:**
+
 ```html
 <button id="login-button">Login</button>
 ```
-The ID of this button is `login-button`. The important thing about an ID 
+
+The ID of this button is `login-button`. The important thing about an ID
 is that it should uniquely identify that element on that page.
 
 ---
 
 ### 8. Can I Have Multiple IDs in One Project?
 
-**Yes!** This was something I initially found confusing. Having a unique 
-ID doesn't mean there can only be one ID in the entire project. I can 
+**Yes!** This was something I initially found confusing. Having a unique
+ID doesn't mean there can only be one ID in the entire project. I can
 have many different IDs:
+
 ```html
 <h1 id="main-title">My Website</h1>
 <button id="login-button">Login</button>
 <button id="signup-button">Sign Up</button>
 <div id="footer">Footer</div>
 ```
-There are four different IDs here: `main-title`, `login-button`, 
-`signup-button`, `footer`. That's completely fine. The important thing is 
+
+There are four different IDs here: `main-title`, `login-button`,
+`signup-button`, `footer`. That's completely fine. The important thing is
 that I shouldn't give MULTIPLE ELEMENTS the SAME ID on the same page.
 
 ---
@@ -1283,19 +1294,23 @@ that I shouldn't give MULTIPLE ELEMENTS the SAME ID on the same page.
 ### 9. Why Shouldn't I Reuse the Same ID?
 
 This would be incorrect:
+
 ```html
 <li id="item">Home</li>
 <li id="item">About</li>
 <li id="item">Contact</li>
 ```
-All three elements share the ID `item` — but an ID is supposed to 
-uniquely identify ONE element. Instead, if these elements genuinely 
+
+All three elements share the ID `item` — but an ID is supposed to
+uniquely identify ONE element. Instead, if these elements genuinely
 needed IDs, they should have different ones:
+
 ```html
 <li id="home-item">Home</li>
 <li id="about-item">About</li>
 <li id="contact-item">Contact</li>
 ```
+
 Now each one has its own identity.
 
 ---
@@ -1303,29 +1318,36 @@ Now each one has its own identity.
 ### 10. ID vs Class
 
 **Class** represents a group/category:
+
 ```html
 <button class="btn">Login</button>
 <button class="btn">Sign Up</button>
 <button class="btn">Contact</button>
 ```
-All three buttons belong to the `btn` category. I can style them 
+
+All three buttons belong to the `btn` category. I can style them
 together:
+
 ```css
 .btn {
-    padding: 10px;
+  padding: 10px;
 }
 ```
 
 **ID** represents a specific, unique element:
+
 ```html
 <button id="login-button">Login</button>
 ```
+
 This identifies that particular button. CSS can target it:
+
 ```css
 #login-button {
-    background-color: blue;
+  background-color: blue;
 }
 ```
+
 The `#` means that `login-button` is an ID selector.
 
 ---
@@ -1333,21 +1355,23 @@ The `#` means that `login-button` is an ID selector.
 ### 11. Can a Class Be Used for Only One Element?
 
 **Yes.** For example:
+
 ```html
 <button class="login-button">Login</button>
 ```
-There is nothing wrong with this — a class can be used on only one 
-element. The difference is that classes are DESIGNED to be reusable, so 
+
+There is nothing wrong with this — a class can be used on only one
+element. The difference is that classes are DESIGNED to be reusable, so
 if later I have two elements with the same class, both can use it.
 
 ---
 
 ### 12. Why Use an ID If a Class Can Also Be Unique?
 
-I initially thought: "if I can just give every element a different class 
-name, why do I need IDs?" I realized the difference isn't simply "class 
-can do this, but ID can't" — there's overlap. Both classes and IDs can be 
-used by CSS to target elements. The main difference is what the name 
+I initially thought: "if I can just give every element a different class
+name, why do I need IDs?" I realized the difference isn't simply "class
+can do this, but ID can't" — there's overlap. Both classes and IDs can be
+used by CSS to target elements. The main difference is what the name
 REPRESENTS:
 
 - **Class:** "This element belongs to this group/category."
@@ -1358,59 +1382,64 @@ REPRESENTS:
 ### 13. Using Class and ID Together
 
 An HTML element can have BOTH a class and an ID at the same time:
+
 ```html
-<button id="login-button" class="btn">
-    Login
-</button>
+<button id="login-button" class="btn">Login</button>
 ```
+
 Here:
-- `class="btn"` means: this button belongs to the general `btn` category, 
+
+- `class="btn"` means: this button belongs to the general `btn` category,
   so it receives common button styling:
+
 ```css
 .btn {
-    padding: 10px 20px;
-    border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 5px;
 }
 ```
-- `id="login-button"` means: this particular button has the unique 
+
+- `id="login-button"` means: this particular button has the unique
   identity `login-button`, so it can be targeted specifically:
+
 ```css
 #login-button {
-    background-color: blue;
+  background-color: blue;
 }
 ```
-So one element can have both a class for shared characteristics AND an ID 
+
+So one element can have both a class for shared characteristics AND an ID
 for its unique identity.
 
 ---
 
 ## PART 2: MY 6 SELF-QUIZ QUESTIONS AND ANSWERS
 
-**Q1: Why is HTML called a "markup" language instead of a "programming" 
-language — what's the actual technical difference, not just the 
+**Q1: Why is HTML called a "markup" language instead of a "programming"
+language — what's the actual technical difference, not just the
 definition?**
 
-HTML is called a markup language and not a programming language because 
-it only helps the browser display text, images, links, and so on from a 
-website. It doesn't give the computer, nor tell the computer, to carry 
-out any logical task or assignment — hence it is not a programming 
+HTML is called a markup language and not a programming language because
+it only helps the browser display text, images, links, and so on from a
+website. It doesn't give the computer, nor tell the computer, to carry
+out any logical task or assignment — hence it is not a programming
 language.
 
-It simply tells a browser: "hey bro, this certain code is an image, this 
-is a link, it should appear like this, have this colour, and structure." 
-But it doesn't tell the computer "here, do this, here think of this, 
-where do you put this, and all that." It's just written code that the 
-browser simply converts into visuals, so users can see and understand 
-those codes. It doesn't tell the computer to carry out any logical 
+It simply tells a browser: "hey bro, this certain code is an image, this
+is a link, it should appear like this, have this colour, and structure."
+But it doesn't tell the computer "here, do this, here think of this,
+where do you put this, and all that." It's just written code that the
+browser simply converts into visuals, so users can see and understand
+those codes. It doesn't tell the computer to carry out any logical
 action.
 
-**Q2: If `<div>` doesn't do any styling or behavior on its own, what's 
-actually the point of using it at all? Give a real example of a problem 
+**Q2: If `<div>` doesn't do any styling or behavior on its own, what's
+actually the point of using it at all? Give a real example of a problem
 it solves.**
 
-We use div to group codes. It acts as a container to separate codes from 
-other codes. It tells the browser: "hey, these codes aren't together with 
-these codes, so do justice when you are displaying them to the users or 
+We use div to group codes. It acts as a container to separate codes from
+other codes. It tells the browser: "hey, these codes aren't together with
+these codes, so do justice when you are displaying them to the users or
 anyone viewing them."
 
 Example — let's say we're writing:
@@ -1542,9 +1571,8 @@ tags, forms, or moving into CSS properly). Will bring today's
 understanding of div, class, and id forward, since these are foundational
 for everything that comes after
 
-
-
 # 📅 Day 6–7 — Monday, August 10 & Tuesday, August 11, 2026
+
 **Assignment: JavaScript Randomness — `Math.random()`, `Math.floor()`, `Math.ceil()`**
 
 > Note: Assignment was given in class on Monday (Day 6). Started it Monday, finished it Tuesday (Day 7), but didn't commit either day. Logging and pushing it now on Wednesday (Day 8 — no class today, self-study day) while catching up. We haven't formally started JavaScript yet, but this assignment required applying logical thinking to a JS snippet.
@@ -1556,9 +1584,11 @@ for everything that comes after
 ## 📝 Assignment Breakdown
 
 ### 1. The Problem
-Imagine a school raffle with numbered paper tickets in a box. You reach in, mix them, and pull one out — whatever number is on it wins. A computer can't literally reach into a box, so the code has to *simulate* that using numbers instead of paper.
+
+Imagine a school raffle with numbered paper tickets in a box. You reach in, mix them, and pull one out — whatever number is on it wins. A computer can't literally reach into a box, so the code has to _simulate_ that using numbers instead of paper.
 
 **Starting script (13 tickets):**
+
 ```javascript
 // Step 1: Define the total number of raffle tickets sold
 const totalTickets = 13;
@@ -1568,13 +1598,17 @@ const winningTicket = Math.floor(Math.random() * totalTickets) + 1;
 
 // Step 3: Announce the winner!
 console.log("🎫 Drawing the winning raffle ticket...");
-console.log(`🎉 Congratulations to the holder of Ticket Number: ${winningTicket}!`);
+console.log(
+  `🎉 Congratulations to the holder of Ticket Number: ${winningTicket}!`,
+);
 ```
 
 ### 2. What is "Random"?
+
 "Random" means: before it happens, you can't predict the outcome, and every outcome has a fair chance. Like a six-sided die — you don't know what you'll roll, but each number is equally likely. `Math.random()` is JavaScript's version of that die.
 
 ### 3. What `Math.random()` Actually Gives You
+
 - Takes **no input** — always empty brackets: `Math.random()`
 - Produces a **decimal** between `0` (possible) and just under `1` (never reaches exactly 1)
 - Every decimal in that range is equally likely
@@ -1582,60 +1616,67 @@ console.log(`🎉 Congratulations to the holder of Ticket Number: ${winningTicke
 **Analogy:** A blank 1-meter measuring tape. Closing your eyes and pointing anywhere on it is like calling `Math.random()` — you could land anywhere from 0 to almost 1, totally unpredictably.
 
 ```javascript
-Math.random() // → 0.4837211 (different, unpredictable decimal every time)
+Math.random(); // → 0.4837211 (different, unpredictable decimal every time)
 ```
 
 ### 4. Turning a Decimal Into a Usable Whole Number
+
 A decimal like `0.62` isn't a valid ticket number. Three steps fix that, in order:
 
 **Step A — Stretch:** Multiply by the total range size.
+
 ```javascript
-Math.random() * totalTickets
+Math.random() * totalTickets;
 // Example: 0.62 * 50 = 31
 ```
 
 **Step B — Chop:** Round down using `Math.floor()`.
+
 ```javascript
-Math.floor(Math.random() * totalTickets)
+Math.floor(Math.random() * totalTickets);
 // Example: Math.floor(31.42) = 31
 ```
 
 **Step C — Shift:** Add 1, since real tickets start from 1, not 0.
+
 ```javascript
-Math.floor(Math.random() * totalTickets) + 1
+Math.floor(Math.random() * totalTickets) + 1;
 // Example: 31 + 1 = 32
 ```
 
-This "stretch → chop → shift" pattern works for *any* "pick a random whole number in a range" problem — dice rolls, lottery draws, random level selection, all follow the same shape.
+This "stretch → chop → shift" pattern works for _any_ "pick a random whole number in a range" problem — dice rolls, lottery draws, random level selection, all follow the same shape.
 
 ### 5. `Math.floor()` vs `Math.ceil()`
 
-| Function | What it does | Direction |
-|---|---|---|
-| `Math.floor()` | Drops the decimal, keeps the whole number below it | Always rounds **down** |
-| `Math.ceil()` | Jumps to the whole number above it if any decimal exists | Always rounds **up** |
+| Function       | What it does                                             | Direction              |
+| -------------- | -------------------------------------------------------- | ---------------------- |
+| `Math.floor()` | Drops the decimal, keeps the whole number below it       | Always rounds **down** |
+| `Math.ceil()`  | Jumps to the whole number above it if any decimal exists | Always rounds **up**   |
 
 ```javascript
-Math.floor(31.01)  // → 31
-Math.ceil(31.01)   // → 32
+Math.floor(31.01); // → 31
+Math.ceil(31.01); // → 32
 
-Math.floor(31.99)  // → 31 (still down, even this close to 32)
-Math.ceil(31.99)   // → 32
+Math.floor(31.99); // → 31 (still down, even this close to 32)
+Math.ceil(31.99); // → 32
 
-Math.floor(31.0)   // → 31 (already whole, stays)
-Math.ceil(31.0)    // → 31 (already whole, stays)
+Math.floor(31.0); // → 31 (already whole, stays)
+Math.ceil(31.0); // → 31 (already whole, stays)
 ```
 
 **Why `Math.floor` and not `Math.ceil` in the raffle formula:**
 `Math.floor` guarantees the highest possible value before `+1` is `totalTickets - 1`, which becomes exactly `totalTickets` after shifting — never higher.
 
 If `Math.ceil` were used with 200 students and `Math.random()` returns `0.998`:
+
 ```javascript
 0.998 * 200 = 199.6
 Math.ceil(199.6) = 200        // rounds UP
 200 + 1 = 201                 // ❌ Ticket 201 doesn't exist!
 ```
+
 With `Math.floor`, the same input stays safe:
+
 ```javascript
 0.998 * 200 = 199.6
 Math.floor(199.6) = 199       // rounds DOWN
@@ -1643,31 +1684,39 @@ Math.floor(199.6) = 199       // rounds DOWN
 ```
 
 ### 6. Why Use a Variable Instead of a Hardcoded Number
+
 ```javascript
 const totalTickets = 50;
 const winningTicket = Math.floor(Math.random() * totalTickets) + 1;
 ```
+
 The formula references `totalTickets` **by name**, not by typing the number directly in. The computer remembers: "I have a variable called `totalTickets`, currently `50`." Change the one line where it's defined, and every calculation depending on it updates automatically. This is called a **single source of truth** — a core programming habit. Hardcoding the number in multiple places means you'd have to hunt down and change every occurrence, which is an easy way to introduce bugs.
 
 ### 7. My Solution: Adapting the Script for 50 Students
+
 1. Find the variable controlling ticket count: `const totalTickets = 13;`
 2. Change `13` to `50`: `const totalTickets = 50;`
 3. No other line changes — the rest of the script already references `totalTickets` by name.
 4. Run the script to confirm `winningTicket` only outputs numbers between 1 and 50.
 
 **Full corrected script:**
+
 ```javascript
 const totalTickets = 50;
 const winningTicket = Math.floor(Math.random() * totalTickets) + 1;
 
 console.log("🎫 Drawing the winning raffle ticket...");
-console.log(`🎉 Congratulations to the holder of Ticket Number: ${winningTicket}!`);
+console.log(
+  `🎉 Congratulations to the holder of Ticket Number: ${winningTicket}!`,
+);
 ```
 
 ### 8. Key Takeaway
+
 Any "pick a random whole number between two limits" problem in JavaScript follows the same shape:
 
 **Stretch → Chop → Shift**
+
 1. **Stretch** — multiply `Math.random()` by the size of your range
 2. **Chop** — use `Math.floor()` to round down to a whole number
 3. **Shift** — add (or subtract) to move the range to where it needs to start
@@ -1691,7 +1740,8 @@ A: `Math.ceil` rounds up. In a 200-student raffle, if `Math.random()` returns `0
 A: `totalTickets` is a variable — a named container holding a value. The formula references it by name, not by literal value. The computer substitutes whatever value is currently assigned. Changing the one definition line updates every dependent calculation automatically.
 
 **Follow-up: Is it safe to say `Math.random()` never generates 1 nor 50 (in a 1–50 range)?**
-A: Not quite — both 1 and 50 ARE reachable in the *final* result, even though `Math.random()` alone never touches exactly 1.
+A: Not quite — both 1 and 50 ARE reachable in the _final_ result, even though `Math.random()` alone never touches exactly 1.
+
 - **1 is reachable:** if `Math.random()` returns `0` (or near 0), `Math.floor(0 * 50) + 1 = 1`.
 - **50 is reachable:** if `Math.random()` returns something extremely close to 1 (like `0.9999999`), `0.9999999 * 50 = 49.999995`, `Math.floor(...) = 49`, and `49 + 1 = 50`.
 
@@ -1700,9 +1750,310 @@ The real boundary: `Math.floor(Math.random() * N)` produces any whole number fro
 ---
 
 ## 🧗 Struggled With
-- Trusting that `Math.random()` never hitting exactly 1 doesn't mean the *final formula* can't hit the top of the range — took a second pass to see why `+1` closes that gap.
+
+- Trusting that `Math.random()` never hitting exactly 1 doesn't mean the _final formula_ can't hit the top of the range — took a second pass to see why `+1` closes that gap.
 - Seeing why `Math.ceil` "feels" more intuitive for rounding but actually breaks the upper bound.
 - Staying on top of committing work the same day it's done — this entry is a reminder to push immediately after finishing, not days later.
 
 ## 🔜 Today / Next (Day 8 — Wednesday, August 12, 2026, self-study — no class)
+
 - No formal class today. Using the day to self-study and catch up on this commit.
+
+## JavaScript - Day 1 - Wednesday, September 23, 2026
+
+**Note on the gap:** Several weeks passed between my last journal entry
+and this one. During that time I also covered more CSS in depth, but
+didn't document it — stayed heads-down focused on learning but let the
+daily habit slip. Restarting today with JavaScript, and committing to
+not missing a day through this module.
+
+**Study time:** 4 hours
+**Source:** Eloquent JavaScript (4th ed.) — Intro, Ch. 1 (Values, Types,
+Operators), Ch. 1 (Values, Types, and Operators)
+
+---
+
+## What I Covered
+
+- Basic values and data types (numbers, strings, booleans)
+- Arithmetic and comparison operators
+- Type coercion basics
+- Statements, expressions,
+- Covered if / else if / else conditional chains in real depth through the coding task. But "control flow" as a topic in Chapter 2 is bigger than that — it also includes while loops, do...while loops, for loops, break/continue, and switch statements. None of those were touched today.
+
+---
+
+## Concept Check — Questions & What I Learned
+
+### 1. Type coercion with `+` vs `-`
+
+`"5" + 3` → `"53"` (string concatenation). `"5" - 3` → `2` (numeric
+subtraction).
+
+**Why:** `+` is overloaded — it means both addition and concatenation, so
+if either side is a string, JS treats it as concatenation. Every other
+arithmetic operator (`-`, `*`, `/`) has no string meaning, so JS forces
+both sides to numbers instead.
+
+### 2. Why `NaN === NaN` is `false`
+
+By spec, `NaN` represents an invalid/unrepresentable numeric result and
+is defined to never equal anything — not even another `NaN`. To actually
+check for it, use `Number.isNaN(x)` rather than `=== NaN`.
+
+### 3. How `||` and `&&` actually work
+
+Initially assumed these return `true`/`false` like a math logic gate.
+Corrected understanding:
+
+- **`||`** — if the left side is truthy, returns the **left side** as-is
+  (never checks the right). If the left side is falsy, returns the
+  **right side** as-is (regardless of what it is).
+- **`&&`** — if the left side is falsy, returns the **left side** as-is
+  (short-circuits). If the left side is truthy, returns the **right
+  side** as-is (regardless of what it is).
+
+Neither operator converts anything to a boolean — they return actual
+values, not judgments about the values.
+
+```js
+"" || "hello"; // "hello"  (left falsy → returns right)
+"hi" || "hello"; // "hi"     (left truthy → returns left)
+0 && "hello"; // 0        (left falsy → returns left, NOT boolean false)
+5 && "hello"; // "hello"  (left truthy → returns right)
+```
+
+**Truthy vs Falsy:** only **7 falsy values** exist in JS:
+`false, 0, -0, "", null, undefined, NaN` (plus `0n`). Everything else is
+truthy — including easy-to-miss traps like `"0"`, `"false"`, `[]`, and
+`{}`, which are all non-empty/non-null and therefore truthy.
+
+### 4. `const` — what it actually locks
+
+Initial misconception: thought `const` meant "the data can never
+change," and that objects/arrays "bypass" this rule.
+
+**Corrected:** `const` only locks the **variable-to-value binding** — it
+prevents reassigning the variable name to point somewhere else. It says
+nothing about the _contents_ of what it points to.
+
+- Primitives (numbers, strings): no internal contents exist separately
+  from the value, so changing the value **is** reassignment → not
+  allowed with `const`. Must use `let` if the value needs to change.
+- Arrays/objects: the variable holds a reference. Mutating contents
+  (`.push()`, `arr[0] = x`, `obj.prop = x`) never reassigns the variable
+  itself, so `const` permits it freely. Reassigning the variable to a
+  _new_ array/object (`arr = [...]`) is still illegal.
+
+```js
+const cart = [];
+cart.push("apple"); // ✅ fine — mutating contents
+cart = ["banana"]; // ❌ error — reassignment
+
+const user = {};
+user.name = "Ali"; // ✅ fine — adding a property
+user = { name: "Sam" }; // ❌ error — reassignment
+```
+
+Objects store **properties** (key-value pairs, accessed by name);
+arrays store **elements** (accessed by numeric index). Corrected an
+earlier mistaken use of the word "class" to mean "property."
+
+### 5. Expression vs Statement
+
+- **Expression** — any code that evaluates to a value (`5 + 3`,
+  `age > 18`, a ternary).
+- **Statement** — a complete instruction that performs an action
+  (`let a = 14;`, an `if` block, a loop). Statements are often built out
+  of expressions (e.g., `14` inside `let a = 14;` is an expression).
+
+**Quick test:** if it can go inside `console.log(...)` or on the right
+side of `=`, it's an expression.
+
+---
+
+## Coding Task — Positive / Negative / Zero Checker
+
+**Bugs found and fixed along the way:**
+
+1. **Two separate `if` blocks instead of one `if...else if...else`
+   chain** — caused multiple labels to print for the same number (e.g.,
+   both "Negative" and "zero" printed for `Score = 20`), since each `if`
+   ran independently regardless of the other.
+2. **`if (Score = 0)`** — single `=` is assignment, not comparison. This
+   silently overwrote `Score` to `0` and evaluated as falsy, making that
+   branch permanently dead code that could never run for any input.
+3. **Arbitrary thresholds (`>= 100`, `<= 30`, `>= 1`)** instead of the
+   actual mathematical boundary (`0`) — caused real positive numbers
+   (like `50` or `0.5`) to be misclassified as "Negative," and left gaps
+   (e.g., `0.5`) that no condition caught at all.
+
+**Final if/else version:**
+
+```js
+var A = 10;
+var B = 0;
+var Score = A + B; // change A/B to test different Score values
+
+if (Score > 0) {
+  console.log("Positive");
+} else if (Score < 0) {
+  console.log("Negative");
+} else {
+  console.log("Zero");
+}
+```
+
+Tested with `Score = 10, -10, 0, 0.5` — each run printed exactly one
+correct label.
+
+**Ternary version:**
+
+```js
+console.log(Score > 0 ? "Positive" : Score < 0 ? "Negative" : "Zero");
+```
+
+Verified this matches the if/else output across all four test values.
+Understood that the final `"Zero"` needs no explicit check — it's
+reached only when both `Score > 0` and `Score < 0` are false, so it must
+be exactly zero by elimination.
+
+**Coercion comment:**
+
+```js
+// If Score were the string "5" instead of the number 5:
+// Comparison operators (>, <, >=, <=) try to convert a string operand to a number first.
+// If the string represents a valid number (e.g. "5"), conversion succeeds and the
+// comparison works correctly — "5" > 0 becomes 5 > 0 → true.
+// If the string does NOT represent a valid number (e.g. "hello"), conversion fails and
+// produces NaN. Since any comparison involving NaN is always false, the check silently
+// returns false instead of erroring — a bug that hides rather than reveals itself.
+```
+
+Verified live: `"5" > 0` → `true`; `"hello" > 0` → `false` (via `NaN`).
+
+---
+
+## Key Takeaways
+
+- Structure matters more than "does it run without errors" — code can
+  execute cleanly and still be logically wrong (my two-`if` version ran
+  fine but produced double or missing labels).
+- `=` vs `===` is a silent, dangerous bug class — always double-check
+  comparisons.
+- `||` / `&&` return values, not booleans — a genuinely counter-intuitive
+  JS quirk worth internalizing early.
+- `const` protects the binding, not the contents — default to `const`,
+  switch to `let` only when reassignment is actually needed.
+- Testing edge cases (0, decimals, non-numeric strings) surfaces bugs
+  that "normal" inputs hide.
+
+---
+
+## Struggled With (Full Breakdown of the Learning Process)
+
+### 1. Logical operators (`||` and `&&`) — most rounds to lock in (~5-6 exchanges)
+
+Started by describing them the "textbook" way — true/false logic gates.
+Not wrong conceptually, but not how JS actually behaves.
+
+- **First correction:** they don't return booleans, they return actual
+  operand values.
+- **Second attempt:** described `||` as returning "the truthy side" and
+  `&&` as returning "the faulty side" — half-right, but missing that
+  both operators have a second case (what happens when the check fails).
+- **Third attempt:** got both cases correct in my own words — genuine
+  understanding, not just repeating explained phrasing.
+- **Confirmation:** a quick self-test (`"" || "hello"`, `"hi" && "hello"`,
+  etc.) confirmed it stuck. Later, choosing to test the ternary's "why is
+  there no `=== 0`" question entirely on my own showed it had actually
+  landed, not just been memorized for the moment.
+
+### 2. `const` with objects and arrays — slow start, resolved quickly once the right model appeared
+
+Initial belief: "`const` means data can never change," and mutating an
+array/object was "bypassing" the rule.
+
+The real fix was one sentence: `const` locks the variable-to-value
+binding, not the contents. Once that reframe landed, I asked myself a
+genuinely good follow-up — "what if I have `const a = 10` and want `a`
+to be `11`?" — which showed I was testing the boundary of the rule, not
+just accepting it passively.
+
+One vocabulary slip: I called object properties "classes." That's a real
+JS term with a totally different meaning (blueprints for creating
+objects), so it needed correcting immediately before the mix-up could
+compound into a bigger misunderstanding later.
+
+### 3. Expression vs. statement — smallest issue, one round
+
+My instinct ("expression is the computer doing logical reasoning to pick
+something") was in the right neighborhood but overcomplicated. The
+actual rule is simpler: expression = produces a value, statement =
+performs an action. I didn't need a second attempt here — I was just
+missing the precise definition, not the underlying concept.
+
+### 4. The coding task (Positive/Negative/Zero checker) — the biggest and longest struggle, spanning nearly the whole session
+
+This one is worth breaking down round by round, because the PATTERN
+across the rounds matters more than any single fix:
+
+- **Rounds 1-2:** Used arbitrary thresholds (`>= 100`, `<= 30`) instead
+  of the actual mathematical boundary (`0`). Not a syntax problem — a
+  misunderstanding of what "positive/negative/zero" actually means as a
+  concept.
+
+- **Rounds 3-5:** Kept two `if` blocks separate instead of chaining them
+  with `else if`. Caused real, visible bugs — multiple labels printing
+  for one number, or (once `if (Score = 0)` was added) a single `=`
+  silently breaking the zero-check entirely, making it permanently
+  unreachable no matter what number was tested.
+
+  The `=` vs `===` bug specifically caused genuine confusion — I
+  initially thought `console.log(Score)` was somehow "deciding" whether
+  to print based on the value, when actually that line is completely
+  unconditional; the real issue was the zero-check being dead code. This
+  took a few back-and-forths with actual console screenshots before the
+  distinction between "this line always runs" and "this line is broken
+  logic" became clear. That confusion made sense — when two bugs stack
+  on top of each other, it's genuinely hard to tell which one is causing
+  what you're seeing.
+
+- **Round 6:** Fixed `=` → `===`, but conditions still didn't fully
+  cover every number (`>= 1` left a gap between 0 and 1) — caught by
+  testing `Score = 0.5` and getting no output at all.
+
+- **Round 7:** Instead of fixing the root cause, patched by adding a
+  fourth condition to specifically catch the 0-1 gap. Worked narrowly but
+  wasn't scalable (what about 0.25? 0.99999?). Caught this myself,
+  unprompted — realized "that's still wrong... I can simply swap that
+  greater-than-1 to 0" — the real turning point of the whole exercise.
+
+- **Final round:** `> 0` as the single correct boundary, `else` for zero
+  (no explicit check needed, caught by elimination) — clean, gap-free,
+  no patches. Then transferred this same "no check needed for the last
+  case" logic to the ternary version entirely independently, reasoning
+  through it correctly before it was even confirmed.
+
+### 5. Type coercion comment — one round, minor slip
+
+Correctly identified that JS looks inside a string for a valid number
+and uses it if found. The one factual error: said a failed conversion
+produces `null`. It actually produces `NaN` — which connects directly
+back to the earlier `NaN` lesson (`NaN` never equals anything, including
+itself). That link — coercion failure → `NaN` → always-false comparisons
+— is genuinely one of the more subtle bug sources in real JS code, so
+getting it precise mattered.
+
+### The pattern worth naming
+
+Almost every stumble today was the same root issue wearing different
+clothes — **patching a symptom instead of fixing the underlying rule**:
+arbitrary thresholds instead of `> 0`, a fourth condition instead of
+fixing `>= 1`, separate `if`s instead of a proper chain. By the end, I
+was catching that pattern in myself before it had to be pointed out.
+That shift — from "make the error message go away" to "why is this
+actually wrong" — is the real Day 1 win, more than any single syntax
+fact.
+
+---
