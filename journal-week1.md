@@ -1759,6 +1759,14 @@ The real boundary: `Math.floor(Math.random() * N)` produces any whole number fro
 
 - No formal class today. Using the day to self-study and catch up on this commit.
 
+
+
+
+
+
+
+
+
 ## JavaScript - Day 1 - Wednesday, September 23, 2026
 
 **Note on the gap:** Several weeks passed between my last journal entry
@@ -2057,3 +2065,262 @@ actually wrong" — is the real Day 1 win, more than any single syntax
 fact.
 
 ---
+
+
+
+
+
+
+
+
+# Journal: 6 October 2026
+
+## Hostel Split: building the Home screen
+
+---
+
+## 1. What I'm building
+
+**Hostel Split** is a web app for splitting hostel bills fairly among roommates. I'm building it with **HTML, CSS and JavaScript**, one small step at a time, writing every line myself.
+
+**How it works (the idea):**
+
+- The head of a hostel creates the hostel and adds the roommates.
+- The head posts a bill (for example "Light bill, October, ₦60,000"). The app splits it per person.
+- Roommates open their page (nothing to install) to see what they owe, who has paid, and to submit their payment receipt.
+- Different hostels have different numbers of roommates, so nothing can be written by hand per person. Later, JavaScript will build one row for each roommate from a list.
+
+**The app has five screens:** Welcome (set up the hostel), Home, Bills, Roommates, Overdue Bills.
+
+---
+
+## 2. Where I am
+
+| Part | Status |
+|---|---|
+| HTML skeleton (header, five screens, bottom nav) | Done |
+| CSS variables (colours, gaps, rounded corner) | Done |
+| Header and bottom nav styling | Done |
+| Screen switching with JavaScript | Done |
+| Home screen: stat cards | Done |
+| Home screen: Current bill card | Done today |
+| Home screen: Payments list with status pills | Done today |
+| Bills screen (form to add a bill) | Next |
+| Real data with JavaScript | After that |
+
+All the numbers and names on Home (₦60,000, "Rex Marcatan" and so on) are **placeholders**. They let me design how things look. Later, JavaScript will replace them with real data.
+
+---
+
+## 3. What I learned today
+
+### 3.1 Nesting: a child belongs inside exactly one parent
+
+My bill card looked wrong because two paragraphs were inside the wrong box. The browser decides layout from the nesting, not from how the lines look in my editor.
+
+**Wrong:** the label and the due-date note were inside `bill-top`.
+
+**Right:**
+
+```html
+<p class="section-label">Current bill</p>
+
+<div class="bill-card">
+  <div class="bill-top">
+    <p class="bill-title">Light bill, October</p>
+    <p class="bill-amount">₦60,000</p>
+  </div>
+  <p class="bill-note">Due 15 Oct, ₦5,000 each</p>
+  <div class="progress">
+    <div class="progress-fill" style="width: 58%"></div>
+  </div>
+  <p class="bill-note">7 of 12 paid</p>
+</div>
+```
+
+**Rules I took from this:**
+
+- A child goes inside only one parent.
+- Siblings line up at the same indent.
+- A closing `</div>` lines up with its opening tag. That's how I spot a misplaced one.
+- `bill-top` should hold only the title and amount, because it becomes a row with the title on the left and the amount on the right. Anything extra inside it would join that row.
+
+### 3.2 Flexbox rows: `justify-content: space-between`
+
+```css
+.bill-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+```
+
+| Line | What it does |
+|---|---|
+| `display: flex;` | Puts the children in a row instead of stacking them |
+| `justify-content: space-between;` | First child to the left edge, last child to the right edge |
+| `align-items: baseline;` | Lines up the bottom of the letters, so different-sized text looks level |
+| `align-items: center;` | Centres items vertically (I used this on the payment rows) |
+
+### 3.3 Grouping selectors with a comma
+
+```css
+.bill-title,
+.bill-amount {
+  margin: 0;
+  font-weight: 500;
+}
+```
+
+A comma between selectors means "both of these share this rule". `margin: 0` removes the default paragraph spacing that would push the two items apart vertically.
+
+### 3.4 Margin and padding shorthand
+
+```css
+margin: var(--big-gap) 0 var(--tiny-gap);
+padding: 12px var(--big-gap);
+```
+
+- Three values for margin: **top, left and right, bottom**.
+- Two values for padding: **top and bottom, left and right**.
+- It does the same job as writing four separate margin lines, just shorter.
+
+### 3.5 The progress bar: why an empty `div` is invisible
+
+A `div` with no text has **no height**, so the browser draws nothing. To make it visible I gave it a height.
+
+```css
+.progress {
+  height: 8px;
+  background-color: var(--unpaid-background);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: var(--tiny-gap) 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--brand-green);
+}
+```
+
+- `height: 8px` gives the track a thickness.
+- `border-radius: 999px` makes the ends fully round, like a pill.
+- `overflow: hidden` clips the green fill to the rounded ends, so it doesn't poke out of the corners.
+- `height: 100%` on the fill makes it as tall as the track. Without it, the fill has no height, which is the same problem as before.
+- The fill's width comes from the HTML: `style="width: 58%"`. Later, JavaScript will calculate this number from how many people have paid.
+
+### 3.6 Two classes on one element
+
+```html
+<span class="status status-paid">Paid</span>
+```
+
+- `status` holds the **shared look**: size, weight, padding, pill shape.
+- `status-paid`, `status-unpaid` and `status-overdue` each hold **only a colour pair** (text colour and background).
+- Classes are separated by a **space**, never a comma. With a comma, the browser reads the class as `status,` (comma included), which matches nothing.
+
+```css
+.status {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.status-paid    { color: var(--paid-text);    background-color: var(--paid-background); }
+.status-unpaid  { color: var(--unpaid-text);  background-color: var(--unpaid-background); }
+.status-overdue { color: var(--overdue-text); background-color: var(--overdue-background); }
+```
+
+Why it's a good pattern: I write the shared look once, and each state only changes the colour. When JavaScript builds rows later, it only needs to pick which second class to add.
+
+### 3.7 `<span>` vs `<p>`
+
+A `<p>` starts a new line. A `<span>` stays inline, so it's the right choice for a small label sitting inside a row.
+
+### 3.8 `:last-child` for dividers
+
+```css
+.person-row {
+  border-bottom: 1px solid var(--card-border);
+}
+
+.person-row:last-child {
+  border-bottom: 0;
+}
+```
+
+- Every row gets a line under it, then the **last** row has its line removed, because the card's own border already closes it off.
+- `:last-child` is added right after the class name with **no space**. A space would change its meaning.
+- The second rule must come **after** the first, so it overrides it.
+
+### 3.9 Placeholders vs real data
+
+The hand-written rows are a **sample** so I can design one row. When I add JavaScript, I'll delete them and let a loop (like the `forEach` and `li` creation in my fruit search page) build one `person-row` per roommate. A hostel with 4 people and a hostel with 40 people will both work. The class names I chose today (`person-row`, `person-name`, `status`) are the same ones the loop will use, so none of today's work is wasted.
+
+---
+
+## 4. Mistakes I made and fixed
+
+| Mistake | What went wrong | Fix |
+|---|---|---|
+| Label and note inside `bill-top` | They joined the title/amount row | Moved them out, so `bill-top` holds only the title and amount |
+| Commas in class names (`class="status, status-paid"`) | The browser read `status,` as the class, so the CSS didn't match | Separate classes with a space |
+| Typo `staus` | No CSS matched that class | Spelled it `status` |
+| Forgot `class="person-name"` on the names | CSS had nothing to attach to | Added the class to all three |
+| Pasted CSS without the `.progress {` opening line | The browser had no selector | Always check the first line of a pasted rule |
+| Almost tapped `+` on one file only | It would have left the other files out of the commit | Click **Yes** to stage all, or stage every file |
+
+---
+
+## 5. Git and GitHub: the commit workflow
+
+1. Open **Source Control** and check which files are listed under Changes (an `M` means modified).
+2. Type a commit message.
+3. Click **Commit**, then **Yes** when VS Code asks to stage all changes.
+4. Click **Sync Changes**, then **OK**. This pushes my commit to GitHub.
+5. Open the repo on GitHub and refresh to check that the new message appears.
+
+**Writing a good commit message:**
+
+- Start with a verb in command form: **Add**, **Style**, **Fix**.
+- The first line is the title, and only that shows in the history list.
+- Leave a blank line, then add a detail line if needed.
+
+```
+Add payments list to Home with name and status rows
+
+Style the list as a card with dividers and coloured status pills
+```
+
+My history now reads as three clear steps:
+
+1. Add page layout, colour and spacing variables, header, bottom nav...
+2. Add current bill card to Home with title, amount, progress bar and notes
+3. Add payments list to Home with name and status rows
+
+---
+
+## 6. Questions I asked and what I learned
+
+**Q: Are the names and numbers on Home fixed?**
+No. They're placeholders. Different hostels have different numbers of roommates, so JavaScript will build the rows from a list instead of me writing them by hand.
+
+**Q: Should I tap the `+` next to one file?**
+That stages only that file. If all changed files belong in the same commit, click Commit and choose **Yes** to stage all.
+
+**Q: Is "i added the bill information and styled it" a good commit message?**
+The idea is right, but it's vague and doesn't start with a verb. A better one says what was added and where.
+
+---
+
+## 7. What I'm building next
+
+- The **Bills screen**: a form where the head adds a new bill with a title, an amount and a due date.
+- Then JavaScript to turn what the head types into real bills, and to fill the stat cards, the progress bar and the payments list from that data.
+
+---
+
+## 8. Reflection
+
+Today I learned that most of my layout bugs came from the structure of the HTML, not from the CSS. Fixing the nesting first made every style rule work the way I expected. I also learned that small typos (a comma, a missing letter) break styling silently, so I should compare my class names against the HTML whenever something doesn't change on screen.
