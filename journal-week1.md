@@ -2324,3 +2324,109 @@ The idea is right, but it's vague and doesn't start with a verb. A better one sa
 ## 8. Reflection
 
 Today I learned that most of my layout bugs came from the structure of the HTML, not from the CSS. Fixing the nesting first made every style rule work the way I expected. I also learned that small typos (a comma, a missing letter) break styling silently, so I should compare my class names against the HTML whenever something doesn't change on screen.
+
+
+
+
+
+
+
+
+# Journal: Friday 23 October 2026
+
+**Project:** Duesly (the app was called Hostel Split before)
+**Topic:** Step 30 on the server: users table, migrations, password hashing, sign-up, sign-in and tickets (tokens)
+
+---
+
+## What I built today
+
+Before today the server only had a `/health` check and a database connection. By the end of today, a person can create an account, sign in, and get a ticket that the server recognises. All of it works from the terminal. The screens come next.
+
+| Step | What I did | Proof it worked |
+|---|---|---|
+| 30a | Wrote `server/migrations/001_create_users.sql` (table `users`: id, full_name, email unique, password_hash, role, created_at) | File saved, nothing applied yet |
+| 30b | Wrote `server/migrate.js` to read the migrations folder | Printed `Found files: [ '001_create_users.sql' ]` |
+| 30c | Made `migrate.js` apply each file and record it in `schema_migrations` | First run said `Applied`, second run said `Skipping` |
+| 30d | Looked inside the `duesly` database in pgAdmin | Saw `users` and `schema_migrations`, one migration row, six columns |
+| 30e | Wrote `server/passwords.js` (`hashPassword` and `checkPassword`, using bcryptjs) | Hash starting `$2b$10$` and `true` when compared |
+| 30f | Added `POST /auth/signup` in `server/index.js` | Returned id, full name, lowercase email, role `head` |
+| 30h | Caught the duplicate email error (Postgres code 23505) | Friendly message: this email is already registered |
+| 30i | Added `POST /auth/signin` | Right password returns the user, wrong password and unknown email give the same message |
+| 30j | Sign-in now returns a token (jsonwebtoken, secret in `.env`, lasts 7 days) | `$r.token` printed a long text starting `eyJ` |
+| 30k | Added `requireLogin` and the protected route `GET /auth/me` | No token and fake token both refused, real token returned the user |
+| 30l | Sign-up also returns a token and the user | New user signed up and opened `/auth/me` straight away |
+
+---
+
+## Short Q&A (things I now understand)
+
+**What is a migration?**
+A numbered SQL file that describes one change to the database (`001_...`, `002_...`). Running the same files on any computer builds the same database, including the real server later.
+
+**Why does `migrate.js` keep a `schema_migrations` table?**
+It remembers which files already ran. That is why the second run said `Skipping` instead of crashing with "table already exists".
+
+**Why can't I save the real password?**
+If the database ever leaked, everyone's password would leak. I save a hash instead, a scrambled version that can't be turned back. At sign-in I scramble what was typed and compare.
+
+**Why does the same password give a different hash every time?**
+bcrypt adds a random salt itself. That is also why `checkPassword` is needed: I can't just compare two hashes with `===`.
+
+**Why does sign-in give the same message for a wrong email and a wrong password?**
+So nobody can use the sign-in route to find out which emails are registered.
+
+**What do `$1`, `$2`, `$3` in the SQL mean?**
+Slots. The values go in the array after the SQL text, in order. This is the safe way to put a value inside a query.
+
+**What is a token?**
+A small stamped ticket. It holds my id and role, it is stamped with a secret key only my server knows, and it expires after 7 days. It never holds the password. The server checks the stamp instead of asking for the password again.
+
+**What does `next()` do in `requireLogin`?**
+It means "this request is allowed, carry on to the real route". If `next()` is never called, the request stops at the gatekeeper.
+
+**Why did the new user get `id 3` and not `id 2`?**
+The duplicate email test used up number 2 before Postgres noticed the email was taken. A SERIAL counter never gives numbers back, so gaps are normal.
+
+**Why must I restart the server after every change?**
+A running server keeps the old file in memory. Edit, save, stop (Ctrl+C), start again, then test.
+
+---
+
+## Mistakes I made and fixed
+
+1. **Wrong table name.** In `migrate.js` I typed `applied_files` (the example's name) instead of `schema_migrations`. I renamed it.
+2. **"client password must be a string".** `migrate.js` never loaded `.env`. Fix: `require("dotenv").config();` as the very first line. I hit the same error in `index.js` later and fixed it the same way.
+3. **Name mismatch.** I read `Fullname` from the request but used `full_name` below. JavaScript treats those as different names, so I made them identical.
+4. **Spelling.** `tolowerCase` instead of `toLowerCase` (capital L and capital C). It took two tries because I fixed it but forgot to save and restart.
+5. **A stray react line.** VS Code autocomplete added `const { useState } = require("react");` at the top of `index.js` and the server crashed with "Cannot find module 'react'". I deleted the line. There was also a stray `S` after a semicolon in the `/health` route.
+6. **Routes inside other routes.** First the sign-in route was typed inside the sign-up route, then `/auth/me` ended up inside `requireLogin`. Both gave "Cannot POST/GET ... ". Each route and function must be its own block, closed before the next one starts.
+7. **A missing closing bracket.** `node --check index.js` told me "Unexpected end of input". Folding the code (Ctrl+K then Ctrl+0) showed which block swallowed the others.
+8. **Testing in the wrong place.** I tried the Up arrow inside the server terminal (it has no prompt), tested while the server was stopped, and left old servers running on port 3000. Rule: one terminal for the server, a second one for the tests.
+9. **`$login` was empty.** PowerShell forgets variables when a terminal is closed or reopened, so the test sent an empty body. I retyped the `$login = ...` line first.
+10. **Forgot to commit for a long stretch.** The Source Control panel had 6 changes waiting. I committed in three groups with specific messages.
+
+---
+
+## Things I learned to do
+
+- `node migrate.js` applies new migration files.
+- `node --check index.js` finds syntax errors without starting the server.
+- `Ctrl+K` then `Ctrl+0` folds all blocks, `Ctrl+K` then `Ctrl+J` unfolds them, `Ctrl+G` jumps to a line.
+- In pgAdmin: right-click `duesly`, Query Tool, then type a `SELECT` and press F5.
+- Testing from PowerShell with `$body = @{ ... } | ConvertTo-Json` and `Invoke-RestMethod`.
+- `.env` stays out of Git (it never appeared in the Source Control list). I must never paste the real `JWT_SECRET` or the database password anywhere.
+
+---
+
+## Commits today
+
+1. Add users table migration and migrate script
+2. Add bcrypt password helper and install dotenv, bcryptjs and jsonwebtoken
+3. Add sign-up, sign-in and token-protected /auth/me routes
+
+---
+
+## Next
+
+**Step 31:** a sign-up and sign-in screen in the app (`index.html`, `style.css`, `script.js`) that talks to this server. It needs one small server setting first (CORS) so the browser is allowed to call the server.
